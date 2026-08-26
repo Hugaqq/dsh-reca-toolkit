@@ -1,0 +1,61 @@
+{
+  "runId": "wukong_huaguo_oath",
+  "title": "Flower–Fruit Mountain Oath",
+  "subtitle": "ReCA Director · 4 parallel shots · 10 serial leaves",
+  "resolution": "1920 × 1080",
+  "duration": "90.2s",
+  "models": "gpt-image-2 + wan3.0-video",
+  "film": {
+    "src": "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
+    "poster": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='1' y2='1'%3E%3Cstop stop-color='%23121711'/%3E%3Cstop offset='.55' stop-color='%233b4f35'/%3E%3Cstop offset='1' stop-color='%23c48a4c'/%3E%3C/linearGradient%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.008' numOctaves='3'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3Cpath d='M0 560L260 290 420 450 610 170 805 430 1000 250 1200 510V675H0Z' fill='%23080d0a' opacity='.8'/%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3Ctext x='60' y='90' fill='%23d5f7c6' font-family='monospace' font-size='22'%3ERECA FINAL FILM / WUKONG%3C/text%3E%3C/svg%3E"
+  },
+  "assets": [
+    { "id": "wukong", "label": "Wukong portrait", "type": "character", "tone": "lime" },
+    { "id": "huaguo_cliff", "label": "Huaguo cliff", "type": "location", "tone": "cyan" },
+    { "id": "oath_banner", "label": "Oath banner", "type": "prop", "tone": "amber" },
+    { "id": "sunset_clouds", "label": "Sunset cloud sea", "type": "atmosphere", "tone": "violet" }
+  ],
+  "shots": [
+    {
+      "id": "shot01_cliff_gaze",
+      "title": "Cliff gaze",
+      "goal": "Establish Wukong above the cloud sea before the oath.",
+      "duration": "24s",
+      "segments": [
+        { "id": "shot01_cliff_gaze_00", "label": "Wide reveal", "mode": "R2V", "duration": "12s", "score": "0.91", "prompt": "A slow aerial push toward Wukong standing on the Flower–Fruit Mountain cliff. Sunset cloud sea, banner cloth moving in the wind, restrained cinematic motion." },
+        { "id": "shot01_cliff_gaze_01", "label": "Resolve to profile", "mode": "I2V", "duration": "12s", "score": "0.87", "prompt": "Continue from the wide reveal into a calm profile close-up. Keep armor, golden headband and sunset key light consistent with the shared portrait state." }
+      ]
+    },
+    {
+      "id": "shot02_banner_raise",
+      "title": "Banner rises",
+      "goal": "Turn the oath banner into the scene's visual motif.",
+      "duration": "20s",
+      "segments": [
+        { "id": "shot02_banner_raise_00", "label": "Hands and staff", "mode": "R2V", "duration": "8s", "score": "0.93", "prompt": "Low angle detail: Wukong drives the staff into stone as the oath banner rises behind him. Sparks, dust and heavy cloth motion." },
+        { "id": "shot02_banner_raise_01", "label": "Banner crest", "mode": "I2V", "duration": "12s", "score": "0.89", "prompt": "The camera cranes upward with the banner until its crest fills the frame, then eases back to reveal the gathered monkeys below." }
+      ]
+    },
+    {
+      "id": "shot03_oath_circle",
+      "title": "Oath circle",
+      "goal": "Build collective energy while preserving character identity.",
+      "duration": "26s",
+      "segments": [
+        { "id": "shot03_oath_circle_00", "label": "Circle enters", "mode": "R2V", "duration": "8s", "score": "0.86", "prompt": "A circular dolly reveals the companions stepping into an oath circle around the planted staff. Preserve wardrobe and spatial continuity." },
+        { "id": "shot03_oath_circle_01", "label": "Hands converge", "mode": "I2V", "duration": "8s", "score": "0.72", "repair": true, "prompt": "Hands converge above the staff. The first render drifts on hand anatomy; ReCA branches to a repaired close-up with clearer silhouettes." },
+        { "id": "shot03_oath_circle_02", "label": "Energy pulse", "mode": "I2V", "duration": "10s", "score": "0.94", "prompt": "A gold energy pulse travels from the joined hands into the staff and across the rock floor, lighting every face in sequence." }
+      ]
+    },
+    {
+      "id": "shot04_sky_vow",
+      "title": "Sky vow",
+      "goal": "Close on the shared vow and a final heroic silhouette.",
+      "duration": "20.2s",
+      "segments": [
+        { "id": "shot04_sky_vow_00", "label": "Cloud break", "mode": "R2V", "duration": "8s", "score": "0.90", "prompt": "The cloud ceiling breaks above the circle; warm light sweeps down the cliff while the camera rotates toward the open sky." },
+        { "id": "shot04_sky_vow_01", "label": "Hero silhouette", "mode": "I2V", "duration": "12.2s", "score": "0.96", "prompt": "End with Wukong and the banner in silhouette against the opened sky. Hold the final composition long enough for the title beat." }
+      ]
+    }
+  ]
+}

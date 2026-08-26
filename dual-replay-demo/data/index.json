@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "slug": "flower-fruit-oath",
+      "run_id": "wukong_huaguo_oath",
+      "title": "Flower-Fruit Oath",
+      "kicker": "Original showcase 01",
+      "summary": "Sun Wukong · 4 shots · 10 segments",
+      "manifest": "data/runs/flower-fruit-oath.json",
+      "poster": "assets/runs/flower-fruit-oath/contact.jpg"
+    },
+    {
+      "slug": "grand-piano",
+      "run_id": "1801622c350d",
+      "title": "Grand Piano",
+      "kicker": "Original showcase 02",
+      "summary": "Fantasy pianist · 1 shot · 6 segments",
+      "manifest": "data/runs/grand-piano.json",
+      "poster": "assets/runs/grand-piano/contact.jpg"
+    },
+    {
+      "slug": "reed-marsh",
+      "run_id": "reed_dusk",
+      "title": "Reed Marsh",
+      "kicker": "Original showcase 03",
+      "summary": "Dusk marsh · 4 shots · 8 segments",
+      "manifest": "data/runs/reed-marsh.json",
+      "poster": "assets/runs/reed-marsh/contact.jpg"
+    },
+    {
+      "slug": "nezha-fire-pagoda",
+      "run_id": "nezha_fire_pagoda",
+      "title": "Nezha · Fire Pagoda",
+      "kicker": "Validator showcase",
+      "summary": "Mythic action · 3 shots · 8 segments",
+      "manifest": "data/runs/nezha-fire-pagoda.json",
+      "poster": "assets/runs/nezha-fire-pagoda/contact.jpg"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+- insert:
+    - id: reca-details-demo
+      name: '@reca-demo/dsh-details'

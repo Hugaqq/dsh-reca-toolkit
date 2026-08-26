@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReCA × DeepSeek Harness — Plugin Lab</title>
+  <link rel="stylesheet" href="./lab.css">
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div class="eyebrow">RECA DIRECTOR / PLUGIN LAB</div>
+      <h1>三种无需修改 Harness 的集成形态</h1>
+      <p>同一条 ReCA 执行轨迹，分别放入会话页签、浮动抽屉和原生 Details 区域。选择重点是展示效果与接入速度。</p>
+    </header>
+
+    <section class="cards" aria-label="Plugin demos">
+      <article class="card tab-card">
+        <div class="number">01</div>
+        <div class="preview tab-preview" aria-hidden="true">
+          <div class="preview-tabs"><span>Chat</span><span>Trajectory</span><strong>ReCA</strong></div>
+          <div class="tree-lines"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="tag">CLEANEST PLUGIN SURFACE</div>
+        <h2>ReCA 会话页签</h2>
+        <p>完整画布、节点检查和视频预览都放进 <code>conversation.view</code>。不破坏原生 Chat，但需要切换页签。</p>
+        <a href="./reca-tab-plugin/demo/">打开 Demo <span>↗</span></a>
+      </article>
+
+      <article class="card overlay-card">
+        <div class="number">02</div>
+        <div class="preview overlay-preview" aria-hidden="true">
+          <div class="chat-lines"><i></i><i></i><i></i></div><div class="drawer-mini"><b>ReCA</b><i></i><i></i><i></i></div>
+        </div>
+        <div class="tag">MOST DRAMATIC DEMO</div>
+        <h2>浮动右侧抽屉</h2>
+        <p>通过 <code>shell.overlay</code> 叠在真实对话上，可随时展开和收起。视觉最接近双栏，但不会让原布局自动回流。</p>
+        <a href="./reca-overlay-plugin/demo/">打开 Demo <span>↗</span></a>
+      </article>
+
+      <article class="card details-card">
+        <div class="number">03</div>
+        <div class="preview details-preview" aria-hidden="true">
+          <div class="chat-lines"><i></i><i></i><i></i></div><div class="details-mini"><b>TRACE</b><i></i><i></i><i></i></div>
+        </div>
+        <div class="tag">TRUE LAYOUT REFLOW</div>
+        <h2>Details 区域接管</h2>
+        <p>树进入 Harness 原生右栏，中心对话会真实缩窄。空间关系最好，但会替换原生 Tool Details。</p>
+        <a href="./reca-details-plugin/demo/">打开 Demo <span>↗</span></a>
+      </article>
+    </section>
+
+    <footer>
+      <span>Target: DeepSeek Harness dsh-v0.1.0-rc.7</span>
+      <span>Source-backed sample trace · display-first prototypes</span>
+    </footer>
+  </main>
+</body>
+</html>

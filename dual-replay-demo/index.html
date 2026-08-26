@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DSH for ReCA turns one story prompt into an observable, auditable multi-shot film.">
+    <link rel="icon" href="data:,">
+    <title>DSH for ReCA</title>
+    <link rel="stylesheet" href="./home.css">
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="#top"><img src="./assets/dsh-whale.svg" alt="">DSH for ReCA</a>
+      <span class="nav-skill"><b>DeepSeek Harness</b><span>·</span><code>reca-director</code></span>
+      <nav aria-label="Primary navigation">
+        <a href="#method">Method</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#install">Install</a>
+        <a class="nav-replay" href="#films">Films + trace</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="opener">
+        <video muted autoplay loop playsinline preload="metadata" poster="./home-assets/hero.jpg" src="./home-assets/hero.mp4"></video>
+        <div class="hero-grade"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">A DeepSeek Harness skill</p>
+          <h1>DSH for ReCA</h1>
+          <p class="lede">Turn one story prompt into a coherent, auditable film. Harness stays the creative interface; ReCA exposes the production graph behind the final cut.</p>
+          <div class="hero-actions">
+            <a class="button" href="#films">Explore the execution replay</a>
+            <a class="button ghost" href="#method">See how it works</a>
+          </div>
+        </div>
+        <div class="hero-note"><span>REAL RUNS</span><b>4 films · 12 shots · 32 segments</b></div>
+      </section>
+
+      <section class="statement">
+        <p class="eyebrow">One interface · two systems</p>
+        <h2>One prompt enters Harness.<br><em>An observable production graph comes back.</em></h2>
+        <p>DSH handles intent, tool orchestration, status and delivery. ReCA handles planning, shared visual state, parallel shots, serial segments, validation, repair and final concat.</p>
+      </section>
+
+      <section id="method" class="band">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>From language to a multi-shot film.</h2>
+          <p>Stay in one Harness conversation while ReCA turns the request into a traceable production plan.</p>
+        </div>
+        <div class="feature-grid">
+          <article><small>01 · Direct</small><h3>Describe the film</h3><p>Give DSH the story, tone and constraints in ordinary language. The agent decides how to call the skill and monitor the job.</p></article>
+          <article><small>02 · Plan</small><h3>Grow the shot tree</h3><p>ReCA allocates shots, durations and segment leaves, then creates portraits, locations, props and boundary anchors.</p></article>
+          <article><small>03 · Execute</small><h3>Render with continuity</h3><p>Shots can run in parallel. Segments inside a shot remain serial, passing the previous tail into the next generation.</p></article>
+          <article><small>04 · Inspect</small><h3>Validate and repair</h3><p>Weak leaves can be flagged, rerolled or prompt-adjusted before every accepted segment is concatenated.</p></article>
+        </div>
+      </section>
+
+      <section class="roles">
+        <article>
+          <p class="eyebrow">DeepSeek Harness</p>
+          <h2>The agent-facing layer.</h2>
+          <ul>
+            <li>Understands the creator's request</li>
+            <li>Calls <code>reca_create_video</code></li>
+            <li>Polls lifecycle state without blocking chat</li>
+            <li>Returns the final artifact and trace</li>
+          </ul>
+        </article>
+        <article>
+          <p class="eyebrow">ReCA</p>
+          <h2>The execution layer.</h2>
+          <ul>
+            <li>Plans Shot and Segment dependencies</li>
+            <li>Maintains shared character and scene memory</li>
+            <li>Routes image and video generation</li>
+            <li>Validates, repairs and concatenates</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="workflow" class="band workflow">
+        <div class="section-head">
+          <p class="eyebrow">Workflow</p>
+          <h2>Three visible tool moments.</h2>
+        </div>
+        <div class="workflow-list">
+          <article><span>01</span><div><code>reca_create_video</code><h3>Submit the creative intent</h3></div><p>DSH starts an asynchronous ReCA job and returns a stable run ID immediately.</p></article>
+          <article><span>02</span><div><code>reca_get_status</code><h3>Follow the production graph</h3></div><p>Planning, assets, segments, validation and concat stay readable as lifecycle stages.</p></article>
+          <article><span>03</span><div><code>reca_get_artifact</code><h3>Receive the film and evidence</h3></div><p>The completed MP4 is delivered alongside the persisted artifacts that explain how it was made.</p></article>
+        </div>
+      </section>
+
+      <section id="films" class="film-lab">
+        <div class="film-lab-head">
+          <p class="eyebrow">Films · conversation · execution</p>
+          <h2>Watch the film take shape.</h2>
+        </div>
+        <iframe
+          title="DSH and ReCA synchronized film replay"
+          src="./replay/?embed=1#flower-fruit-oath"
+          loading="eager"
+          allow="autoplay; fullscreen"
+        ></iframe>
+      </section>
+
+      <section id="install" class="band install">
+        <div class="section-head">
+          <p class="eyebrow">Install</p>
+          <h2>Add the skill, then describe the film.</h2>
+          <p>The web experience remains in DeepSeek Harness. The plugin connects its tools to the ReCA gateway.</p>
+        </div>
+        <div class="command"><code>npx @deepseek-ai/dsh@0.1.0-rc.7 plugin --profile web add "file:$PWD/dsh-plugin"</code></div>
+        <div class="install-steps">
+          <span><b>01</b> Add the local plugin</span>
+          <span><b>02</b> Start DSH Web</span>
+          <span><b>03</b> Describe a film in chat</span>
+        </div>
+      </section>
+
+      <section class="references">
+        <span>Method and ecosystem</span>
+        <a href="https://reca.vmv.re/">ReCA paper</a>
+        <a href="https://reca.vmv.re/demo/">ReCA method demo</a>
+        <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>DSH for ReCA</strong><span>reca-director · DeepSeek Harness skill</span></div>
+      <a href="#films">Films + trace ↑</a>
+    </footer>
+  </body>
+</html>

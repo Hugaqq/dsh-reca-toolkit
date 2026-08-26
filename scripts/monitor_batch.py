@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 import urllib.error
 import urllib.request
@@ -29,9 +30,13 @@ def _write_json(path: Path, value: dict[str, Any]) -> None:
     temporary.replace(path)
 
 
-def _gateway_status(base_url: str, run_id: str) -> dict[str, Any]:
+def _gateway_status(base_url: str, run_id: str, token: str = "") -> dict[str, Any]:
+    request = urllib.request.Request(
+        f"{base_url.rstrip('/')}/v1/runs/{run_id}",
+        headers={"Authorization": f"Bearer {token}"} if token else {},
+    )
     with urllib.request.urlopen(
-        f"{base_url.rstrip('/')}/v1/runs/{run_id}", timeout=15
+        request, timeout=15
     ) as response:
         value = json.loads(response.read().decode("utf-8"))
     return value if isinstance(value, dict) else {}
@@ -64,7 +69,11 @@ def monitor(manifest_path: Path, base_url: str, interval_s: float) -> int:
             if not isinstance(run, dict) or not run.get("run_id"):
                 continue
             try:
-                status = _gateway_status(base_url, str(run["run_id"]))
+                status = _gateway_status(
+                    base_url,
+                    str(run["run_id"]),
+                    os.environ.get("RECA_GATEWAY_TOKEN", ""),
+                )
                 run.update({
                     "state": status.get("state"),
                     "stage": status.get("stage"),

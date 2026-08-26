@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReCA Details Takeover — Harness Plugin Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="harness">
+    <aside class="rail">
+      <div class="whale">⌁</div><button>＋</button><button>⌕</button><span></span><button>⚙</button>
+    </aside>
+    <section class="conversation">
+      <header><div><small>DSH / SESSION</small><strong>Flower-Fruit Mountain Oath</strong></div><nav><b>Chat</b><span>Trajectory</span></nav><button>•••</button></header>
+      <div class="messages">
+        <div class="user">请通过 ReCA 制作一条花果山誓言的多镜头短片，保持悟空角色和金箍棒一致。</div>
+        <article><div class="avatar">D</div><div><p>我会把完整故事交给 ReCA Director，并在右侧展示它的真实执行结构。</p><details open><summary>reca_create_video <em>completed</em></summary><code>run_id: wukong_huaguo_oath<br>state: queued<br>shots: planner_decides</code></details><details open><summary>reca_get_status <em class="live">running</em></summary><code>stage: rendering<br>progress: <span data-chat-progress>68%</span><br>segments: 6 / 10</code></details></div></article>
+      </div>
+      <footer class="composer"><span>Ask anything, @ to mention, / for commands</span><button>↑</button></footer>
+    </section>
+    <aside class="details">
+      <header><div><small>RECA DIRECTOR</small><strong>Execution details</strong></div><button title="Details 单插槽会替换原生面板">×</button></header>
+      <section class="run"><div class="runline"><span><i></i> LIVE RUN</span><b data-progress>68%</b></div><strong>Flower-Fruit Mountain Oath</strong><code>wukong_huaguo_oath</code><div class="progress"><i data-progress-bar></i></div><div class="stages"><span class="done">Plan</span><span class="done">Assets</span><span class="active">Render</span><span>Validate</span><span>Concat</span></div></section>
+      <div class="label"><span>EXECUTION TREE</span><span>12 nodes</span></div>
+      <nav class="tree" data-tree></nav>
+      <section class="inspector">
+        <div class="label"><span>NODE INSPECTOR</span><span data-node-state>running</span></div>
+        <div class="preview"><span></span><i>▶</i><b data-node-type>SEGMENT</b></div>
+        <h2 data-node-title>Oath close-up</h2><p data-node-note>Rendering a close-up against the mountain horizon; validator waits for the tail frame.</p>
+        <div class="facts"><span><b>MODEL</b>wan3.0-video</span><span><b>ANCHOR</b>tail-frame</span><span><b>AUDIT</b>continuity</span></div>
+      </section>
+      <footer><span><i></i> Gateway synced</span><b>Native Details replaced</b></footer>
+    </aside>
+  </main>
+  <div class="notice"><b>DETAILS SLOT TAKEOVER</b><span>真实布局回流 · 会替换 Harness 原生 Tool Details</span></div>
+  <script src="./app.js"></script>
+</body>
+</html>

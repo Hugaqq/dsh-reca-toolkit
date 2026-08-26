@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="../">
+    <meta name="description" content="A real DSH + ReCA run replayed as an agent session and an execution tree.">
+    <link rel="icon" href="data:,">
+    <title>DSH × ReCA · Execution Replay</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="DSH and ReCA replay home">
+        <span class="brand-mark"><img src="./assets/dsh-whale.svg" alt=""></span>
+        <span>DSH <b>×</b> ReCA</span>
+      </a>
+      <div class="topbar-center">
+        <span class="eyebrow">REAL RUN ARTIFACT REPLAY</span>
+        <strong id="runName">Loading run…</strong>
+      </div>
+      <div class="topbar-status"><span class="status-dot"></span> Redacted · deterministic</div>
+      <a class="back-home" href="./">← Overview</a>
+    </header>
+
+    <main id="top">
+      <section class="intro">
+        <div>
+          <p class="kicker">One agent request · one observable production graph</p>
+          <h1>Four films, one observable process.<br><span>From Harness intent to ReCA branches.</span></h1>
+        </div>
+      </section>
+
+      <section class="case-section" aria-label="Choose a real run">
+        <div class="case-heading">
+          <div><span>REAL RUNS</span><strong>Choose a film to replay as a tree</strong></div>
+        </div>
+        <div id="casePicker" class="case-picker"></div>
+      </section>
+
+      <section class="stats" aria-label="Run facts">
+        <div><span>RUN</span><strong id="statRun">—</strong></div>
+        <div><span>PLAN</span><strong id="statPlan">—</strong></div>
+        <div><span>MEMORY</span><strong id="statAssets">—</strong></div>
+        <div><span>REPAIRS</span><strong id="statRepairs">—</strong></div>
+        <div><span>MODELS</span><strong id="statModels">—</strong></div>
+      </section>
+
+      <section class="replay-shell" aria-label="Synchronized run replay">
+        <div class="replay-toolbar">
+          <div class="toolbar-title">
+            <span class="live-pill"><i></i> SESSION REPLAY</span>
+            <strong id="stageLabel">Ready</strong>
+          </div>
+          <div class="timeline-controls">
+            <button id="playButton" class="icon-button" type="button" aria-label="Pause replay">Ⅱ</button>
+            <button id="restartButton" class="icon-button" type="button" aria-label="Restart replay">↺</button>
+            <span id="clock">00:00 / 00:00</span>
+            <input id="scrubber" type="range" min="0" max="1000" value="0" aria-label="Replay position">
+            <div class="speed-control" aria-label="Replay speed">
+              <button type="button" data-speed="1" class="active">1×</button>
+              <button type="button" data-speed="2">2×</button>
+              <button type="button" data-speed="4">4×</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-view">
+          <aside class="harness-panel" aria-label="DSH session replay">
+            <div class="dsh-shell">
+              <nav class="dsh-rail" aria-label="DeepSeek Harness session rail">
+                <span class="dsh-mark" aria-label="DeepSeek Harness"><img src="./assets/dsh-whale.svg" alt=""></span>
+                <button class="rail-button rail-new" type="button" aria-label="新会话">＋</button>
+                <div class="rail-sessions" aria-hidden="true">
+                  <span class="active"></span><span></span><span></span>
+                </div>
+                <button class="rail-button rail-settings" type="button" aria-label="设置">⚙</button>
+              </nav>
+
+              <div class="dsh-conversation">
+                <header class="dsh-header">
+                  <div class="dsh-session-title">
+                    <strong>ReCA 影视导演</strong>
+                    <span>dsh-reca-toolkit · source-backed replay</span>
+                  </div>
+                  <span id="sessionState" class="dsh-session-state">waiting</span>
+                </header>
+
+                <div class="dsh-view-tabs" role="tablist" aria-label="Harness views">
+                  <button type="button" class="active" data-dsh-view="chat" role="tab" aria-selected="true">对话</button>
+                  <button type="button" data-dsh-view="trace" role="tab" aria-selected="false">轨迹 <span id="traceCount">0</span></button>
+                </div>
+
+                <div id="chatView" class="dsh-view active" role="tabpanel">
+                  <div id="tape" class="tape" aria-live="polite"></div>
+                </div>
+                <div id="traceView" class="dsh-view" role="tabpanel" hidden>
+                  <div class="trajectory-head"><span>EVENT</span><span>SOURCE / STATE</span></div>
+                  <div id="traceTape" class="trace-tape" aria-live="polite"></div>
+                </div>
+
+                <div class="dsh-composer" aria-label="Read-only Harness composer">
+                  <div class="typing-row" id="typingRow">
+                    <span></span><span></span><span></span>
+                    <em>waiting for event</em>
+                  </div>
+                  <div class="composer-input">向 DeepSeek Harness 发送消息</div>
+                  <div class="composer-foot"><span>DeepSeek · Agent</span><span>Replay only ↵</span></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <section class="reca-panel" aria-label="ReCA execution tree">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-index">02</span>
+                <strong>ReCA execution tree</strong>
+              </div>
+              <div class="edge-legend">
+                <span><i class="parallel"></i> parallel shots</span>
+                <span><i class="serial"></i> serial segments</span>
+              </div>
+            </div>
+
+            <nav id="stageChips" class="stage-chips" aria-label="ReCA stages">
+              <span data-stage="plan">Plan</span>
+              <span data-stage="assets">Assets</span>
+              <span data-stage="render">Render</span>
+              <span data-stage="validate">Validate</span>
+              <span data-stage="concat">Concat</span>
+            </nav>
+
+            <div class="memory-section">
+              <div class="section-label"><span>STATE MEMORY</span><small>shared across shots</small></div>
+              <div id="memoryRail" class="memory-rail"></div>
+            </div>
+
+            <div id="treeViewport" class="tree-viewport">
+              <article id="rootNode" class="root-node node pending" data-node-id="root" tabindex="0">
+                <div class="node-orbit"></div>
+                <span class="node-label">ROOT · LONG VIDEO</span>
+                <strong id="rootTitle">Waiting for plan</strong>
+                <small id="rootMeta">DSH has not submitted the run yet</small>
+              </article>
+              <div class="parallel-trunk" aria-hidden="true"></div>
+              <div id="shotGrid" class="shot-grid"></div>
+            </div>
+
+            <section id="inspector" class="inspector" aria-label="Selected node detail">
+              <div class="inspector-copy">
+                <span id="inspectorType" class="inspector-type">SELECT A NODE</span>
+                <h2 id="inspectorTitle">Inspect the real context behind any leaf</h2>
+                <p id="inspectorText">点击 Anchor、Segment 或 State Memory，查看它使用的 Prompt、首帧、尾帧、视频和验证记录。</p>
+                <div id="inspectorFacts" class="inspector-facts"></div>
+              </div>
+              <div id="inspectorMedia" class="inspector-media placeholder">
+                <span>MEDIA PREVIEW</span>
+              </div>
+            </section>
+          </section>
+        </div>
+      </section>
+
+      <section id="finale" class="finale" hidden>
+        <div class="finale-copy">
+          <p class="kicker">ROOT RESOLVED</p>
+          <h2>The graph becomes one film.</h2>
+          <div id="finalFacts" class="final-facts"></div>
+        </div>
+        <video id="finalVideo" controls playsinline preload="metadata"></video>
+      </section>
+    </main>
+
+    <footer>
+      <span>DSH orchestrates · ReCA plans, renders, validates and repairs</span>
+      <span id="artifactNote">Loading artifact provenance…</span>
+    </footer>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

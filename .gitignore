@@ -9,7 +9,9 @@
 .dsh_runs/
 .dsh_active_run_id
 .dsh_gateway.pid
-dsh-plugin/.repo-root
+.playwright-cli/
+output/
+tmp/
 byok_jobs/
 outputs/
 videorlm/outputs/
@@ -28,6 +30,7 @@ demo/data/replay_manifest.json
 *.log
 
 # Python / Node caches
+.venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/

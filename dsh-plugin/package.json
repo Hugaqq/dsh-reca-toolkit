@@ -1,30 +1,48 @@
 {
   "name": "dsh-reca-toolkit",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "DeepSeek Harness plugin that exposes ReCA Director for long-form video creation.",
   "type": "module",
   "main": "src/index.js",
   "exports": {
     ".": "./src/index.js",
+    "./client": "./lib/client.js",
     "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },
-  "files": ["src", "cordis.patch.yml", "README.md"],
+  "files": ["src", "lib", "scripts", "cordis.patch.yml", "README.md"],
   "license": "MIT",
   "keywords": ["deepseek-harness", "dsh", "reca", "video-generation", "skill"],
-  "dependencies": {
-    "@deepseek-ai/dsh-skill": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
-  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ],
+      "platform": "web"
     }
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "check": "npm run build && node scripts/check-package.mjs && node scripts/smoke-client.mjs && node scripts/smoke-host-client.mjs && node scripts/test-capabilities-tool.mjs && node scripts/test-ui-contract.mjs && node scripts/test-trace-session.mjs && node scripts/test-trace-bridge.mjs",
+    "check:installed": "node scripts/check-installed.mjs"
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-skill": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6",
-    "cordis": "^4.0.0-rc.7"
+    "@deepseek-ai/dsh-client-connection": "^0.1.0-rc.7",
+    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.7",
+    "@deepseek-ai/dsh-client-ui-conversation": "^0.1.0-rc.7",
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": { "optional": true },
+    "@deepseek-ai/dsh-client-connection": { "optional": true },
+    "@deepseek-ai/dsh-client-runtime": { "optional": true },
+    "@deepseek-ai/dsh-client-ui-conversation": { "optional": true },
+    "react": { "optional": true }
   }
 }

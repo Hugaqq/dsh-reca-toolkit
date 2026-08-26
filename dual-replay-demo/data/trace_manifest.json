@@ -1,0 +1,922 @@
+{
+  "version": 3,
+  "run_id": "nezha_fire_pagoda",
+  "recording": {
+    "kind": "real_run_artifact_replay",
+    "source": "request + skeleton + render plan + audit + runtime events + local media",
+    "raw_event_count": 684,
+    "replay_duration_s": 37.8,
+    "redacted": true
+  },
+  "story": "请制作一条约 90 秒、1920x1080 的高质量神话动作短片。由 ReCA 的 planner 自己决定镜头数量、景别和分镜边界，不要把下面文字当成已经写好的镜头表。 故事必须让观众一眼看懂：黄昏，天庭琉璃塔从云层里裂开。哪吒踩风火轮从雷云里冲出，火尖枪挑开塔门金锁，混天绫把整座裂塔缠成一条火环。全片只有哪吒一个人，画面里不要任何女性、不要现代晚装、不要第二个人。 哪吒必须是明确成年的年轻男性武神，视觉年龄约二十岁，精悍少年身形但不是幼童脸、不是小孩身体、不是女相。莲花纹额饰，乾坤圈在肘上，混天绫赤红飞带，脚下两只风火轮喷金红焰，火尖枪是一根带火的长枪。玄黑护心甲、赤红战裙、小臂护臂。身份、脸、服装、武器全程不变。 地点始终是同一座正在崩裂的琉璃塔：金色塔砖、断裂飞檐、黄昏云海、电光。不要天兵、不要龙王、不要敖丙。 叙事只要三次清楚的变化，每件只做一次： 1. 风火轮从厚云里甩出，哪吒侧身穿过裂开的塔腰，碎片在身后拉成光带。 2. 他只刺一次：枪尖挑开塔门那把巨大金锁，锁碎，塔门向两边掀开。 3. 混天绫抛出，绕塔一周收成火环，整座塔的琉璃纹被火点亮。镜头拉远收束。 动作要有速度、火、金属反光，不要站桩看风景，不要循环同一动作。不要现代物品、字幕或水印。请直接生成最终视频。",
+  "run": {
+    "state": "succeeded",
+    "stage": "succeeded",
+    "audit_state": "audit_failed",
+    "video_state": "complete",
+    "resolution": "1920x1080",
+    "duration_s": 90,
+    "seed": 0,
+    "planner_model": "deepseek-v4-pro",
+    "render": {
+      "portrait": "gpt-image-2",
+      "anchor_image": "gpt-image-2",
+      "image_edit": "gpt-image-2",
+      "segment_r2v": "wan3.0-video",
+      "segment_i2v": "wan3.0-video",
+      "bridge": "wan3.0-video"
+    }
+  },
+  "counts": {
+    "shots": 3,
+    "segments": 8,
+    "assets": 6,
+    "bridges": 0,
+    "repairs": 3
+  },
+  "film": {
+    "src": "assets/final.mp4",
+    "poster": "assets/contact.jpg",
+    "duration_s": 90.0
+  },
+  "memory": [
+    {
+      "id": "nezha",
+      "kind": "portraits",
+      "label": "nezha",
+      "prompt": "成年男性，约二十岁，精悍少年身形，面部线条刚毅，非幼童脸，非女相。莲花纹额饰，乾坤圈套在左上臂，混天绫赤红飞带缠绕双臂，脚下两只风火轮喷射金红火焰，手持火尖枪，枪尖带火。玄黑护心甲，赤红战裙，小臂护臂。写实电影感，动态光影，黄昏逆光，面部刚毅，身姿矫健，武神气质。",
+      "src": "assets/portraits/nezha.png"
+    },
+    {
+      "id": "cracked_glazed_tower",
+      "kind": "locations",
+      "label": "cracked glazed tower",
+      "prompt": "一座巨大崩裂的琉璃塔，金色塔砖，断裂飞檐，悬浮在黄昏云海之上，电光在云层间闪烁，残片飘浮，塔门紧闭，门上悬着一把巨大的金色锁。写实电影感，史诗尺度，暖金色与冷紫色调，无人物。",
+      "src": "assets/locations/cracked_glazed_tower.png"
+    },
+    {
+      "id": "golden_lock",
+      "kind": "props",
+      "label": "golden lock",
+      "prompt": "一把巨大的金色锁，挂在塔门上，锁体古朴，表面有云纹，在黄昏光下反射出金属光泽，锁环紧扣。",
+      "src": "assets/props/golden_lock.png"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "a01_nezha_tower_break_start",
+      "shot_id": "shot01_nezha_tower_break",
+      "prompt": "静态单帧，35mm / 浅景深 / 低角度仰拍。前景：断裂的琉璃塔塔腰檐角，金色碎片悬浮定格。中景：哪吒侧身飞过，姿态被定格，右脚在前左脚在后，身体侧转，右手持火尖枪斜指下方，左手自然摆动，风火轮火焰拖尾，身后碎片拉成光带。背景：黄昏云海翻涌，闪电劈开云层，暖橙逆光勾勒哪吒轮廓。",
+      "references": {
+        "portrait": "nezha",
+        "place": "cracked_glazed_tower",
+        "prop": ""
+      },
+      "src": "assets/anchors/a01_nezha_tower_break_start.png"
+    },
+    {
+      "id": "a02_nezha_lock_strike_start",
+      "shot_id": "shot02_nezha_lock_strike",
+      "prompt": "静态单帧，50mm / 浅景深 / 平视。前景：塔门上的巨大金锁，锁体反光，表面云纹清晰。中景：哪吒冲刺姿态被定格，双手持火尖枪前刺，枪尖距锁仅一掌，火焰在枪尖跳动。背景：塔门紧闭，金色塔砖布满裂缝，周围漂浮碎片。光照：侧光，黄昏暖色，锁体高光。",
+      "references": {
+        "portrait": "nezha",
+        "place": "cracked_glazed_tower",
+        "prop": "golden_lock"
+      },
+      "src": "assets/anchors/a02_nezha_lock_strike_start.png"
+    },
+    {
+      "id": "a03_nezha_silk_ring_start",
+      "shot_id": "shot03_nezha_silk_ring",
+      "prompt": "静态单帧，35mm / 浅景深 / 中景。哪吒悬停，右手前伸掷出混天绫，红绫从手中飞出，向塔身延伸，末端已开始环绕。塔门已开，金锁碎片散落，塔身琉璃纹暗淡。背景：裂开的塔身，黄昏云海，闪电。光照：暖色逆光，红绫鲜艳。",
+      "references": {
+        "portrait": "nezha",
+        "place": "cracked_glazed_tower",
+        "prop": ""
+      },
+      "src": "assets/anchors/a03_nezha_silk_ring_start.png"
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot01_nezha_tower_break",
+      "title": "shot01 nezha tower break",
+      "story_goal": "展现哪吒从云中冲出，穿越崩裂的塔腰，制造速度感和冲击力，确立哪吒的武神身份和毁灭场景。",
+      "start_state": "哪吒从雷云中冲出，侧身穿过塔腰，身后碎片拉成光带，塔身裂开，闪电照亮轮廓。",
+      "end_state": "哪吒飞离塔腰，朝向塔门飞去，碎片光带逐渐消散，塔腰断裂处仍在掉落碎片。",
+      "planned_duration_s": 20,
+      "duration_s": 20.0,
+      "anchor_id": "a01_nezha_tower_break_start",
+      "leaf_ids": [
+        "seg_shot01_nezha_tower_break_00",
+        "seg_shot01_nezha_tower_break_01"
+      ],
+      "t0": 0.0,
+      "t1": 20.0
+    },
+    {
+      "id": "shot02_nezha_lock_strike",
+      "title": "shot02 nezha lock strike",
+      "story_goal": "只刺一次，枪尖挑开金锁，展现精准一击的破坏力，为后续开门铺垫。",
+      "start_state": "哪吒飞向塔门，双手持火尖枪前刺，枪尖距金锁仅一掌，锁体反光，塔门紧闭。",
+      "end_state": "金锁被枪尖挑碎，碎片飞溅，塔门轰然向两边掀开，哪吒停在门前，枪尖仍带火焰。",
+      "planned_duration_s": 8,
+      "duration_s": 8.0,
+      "anchor_id": "a02_nezha_lock_strike_start",
+      "leaf_ids": [
+        "seg_shot02_nezha_lock_strike_00"
+      ],
+      "t0": 20.0,
+      "t1": 28.0
+    },
+    {
+      "id": "shot03_nezha_silk_ring",
+      "title": "shot03 nezha silk ring",
+      "story_goal": "混天绫抛出，绕塔一周形成火环，将整座塔的琉璃纹点亮，象征哪吒的力量封印或净化塔，并以拉远收束全片。",
+      "start_state": "哪吒右手掷出混天绫，红绫如蛇向前延伸，塔门已开，金锁碎片散落，塔身琉璃纹暗淡。",
+      "end_state": "镜头拉远至极远景，琉璃塔在云海中，被火环环绕，塔身琉璃纹全部点亮，哪吒变成一个小点悬停在塔前，黄昏天空，闪电平息。",
+      "planned_duration_s": 62,
+      "duration_s": 62.0,
+      "anchor_id": "a03_nezha_silk_ring_start",
+      "leaf_ids": [
+        "seg_shot03_nezha_silk_ring_00",
+        "seg_shot03_nezha_silk_ring_01",
+        "seg_shot03_nezha_silk_ring_02",
+        "seg_shot03_nezha_silk_ring_03",
+        "seg_shot03_nezha_silk_ring_04"
+      ],
+      "t0": 28.0,
+      "t1": 90.0
+    }
+  ],
+  "leaves": [
+    {
+      "id": "seg_shot01_nezha_tower_break_00",
+      "shot_id": "shot01_nezha_tower_break",
+      "index": 0,
+      "mode": "r2v",
+      "planned_duration_s": 8,
+      "duration_s": 8,
+      "prompt": "从定格瞬间启动，哪吒侧身穿过琉璃塔断裂的塔腰，镜头低角度仰拍并快速推轨跟拍，保持强烈动态模糊。风火轮金红火焰剧烈喷射，拖尾在身后拉成数米长的火舌，被击碎的塔檐金色碎片在气流中旋转加速，拉出一条条纤细的光带，闪电在云层中劈开，暖橙逆光与冷蓝电光交替闪烁，哪吒的玄黑护心甲反射出锋利的金属光泽，混天绫赤红飘带在身后猎猎舞动，他右手火尖枪斜指下方，枪尖火焰跳跃，整个人如流星般穿过断裂的塔腰，穿出瞬间身后碎片光带达到最亮，哪吒身体微微侧转，面朝塔门方向。",
+      "end_state": "正面低角度仰拍，哪吒刚穿出塔腰，身体侧转，面朝塔门方向，右脚在前左脚在后，风火轮火焰拖尾仍亮，身后金色碎片光带达到最亮，悬浮在塔腰断裂处，背景是黄昏云海，闪电照亮云层，哪吒的轮廓被暖橙逆光勾勒，混天绫飘带在身后，火尖枪斜指下方。",
+      "start_anchor": "a01_nezha_tower_break_start",
+      "src": "assets/segments/seg_shot01_nezha_tower_break_00.mp4",
+      "tail_src": "assets/tails/seg_shot01_nezha_tower_break_00.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": true,
+          "score": 0.78,
+          "detail": "[action_consistency] 主角面部在中后段出现轻微真人化漂移（与portrait参考图对比：额饰模糊、神目光效丢失、下颌线变软），且‘碎片光带达到最亮’的关键节拍未兑现——视频中碎片光带持续衰减，无峰值爆发；塔腰断裂处未呈现"
+        }
+      ],
+      "had_repair": false
+    },
+    {
+      "id": "seg_shot01_nezha_tower_break_01",
+      "shot_id": "shot01_nezha_tower_break",
+      "index": 1,
+      "mode": "r2v",
+      "planned_duration_s": 12,
+      "duration_s": 12,
+      "prompt": "哪吒从塔腰断裂处飞出，朝塔门方向飞去，速度稍减，镜头从侧面摇摄跟随，保持流畅的视差运动。身后的金色碎片光带逐渐暗淡、消散，塔腰断裂处仍在持续掉落小片金色砖石，云海翻涌，闪电渐息，远处塔门逐渐清晰，金色塔门紧闭，门上巨大的金锁表面云纹反光，哪吒飞近塔门，身体前倾，双手微调火尖枪角度，枪尖指向前方，风火轮火焰平稳燃烧，混天绫飘带在身后缓缓飘动，背景的天空从冷蓝过渡到更温暖的黄昏色调，整段节奏由快转慢，为下一击蓄力。",
+      "end_state": "中景，哪吒在塔门前约二十米处悬停，身体前倾，双手持火尖枪，枪尖指向塔门金锁方向，但尚未冲刺，风火轮火焰稳定喷射，混天绫飘带在身后缓缓飘动，玄黑护心甲和赤红战裙清晰可见，背景塔门紧闭，金色锁体反光，塔身裂缝可见，周围零星碎片漂浮，黄昏暖光从侧面照亮哪吒，塔门在阴影中，形成对比。",
+      "start_anchor": null,
+      "src": "assets/segments/seg_shot01_nezha_tower_break_01.mp4",
+      "tail_src": "assets/tails/seg_shot01_nezha_tower_break_01.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": true,
+          "score": 0.78,
+          "detail": "[action_consistency] 视频末段未兑现‘悬停于塔门前约20米处、双手持枪、枪尖指向金锁’的关键 end_state；哪吒始终高速飞行未减速悬停, 且金锁在末帧仍被塔身遮挡不可辨，motif（锁体云纹反光）未在聚焦镜头中呈现"
+        }
+      ],
+      "had_repair": false
+    },
+    {
+      "id": "seg_shot02_nezha_lock_strike_00",
+      "shot_id": "shot02_nezha_lock_strike",
+      "index": 0,
+      "mode": "r2v",
+      "planned_duration_s": 8,
+      "duration_s": 8,
+      "prompt": "镜头从金锁特写开始，哪吒双手持火尖枪猛力前刺，枪尖带着旋转的金红火焰撞上锁体，接触瞬间炸出刺眼白光，金属火花呈放射状四溅，锁体从中心裂开，云纹断裂，碎片慢动作飞散，塔门失去束缚向两边轰然掀开，门轴发出沉闷轰响，门后涌出暗金色光雾，哪吒收枪悬停，枪尖火焰在脸前稳定燃烧，黄昏逆光穿透门洞，照亮飞溅的碎屑和漂浮的塔砖碎片。",
+      "end_state": "哪吒悬停在塔门前，双手持火尖枪，枪尖火焰在身前稳定燃烧，金锁碎片散落漂浮在四周，塔门已完全向两边掀开，门洞内可见暗金色塔内空间，黄昏逆光从门洞透出，周围漂浮着金色塔砖碎片，侧光暖色，金属反光强烈。",
+      "start_anchor": "a02_nezha_lock_strike_start",
+      "src": "assets/segments/seg_shot02_nezha_lock_strike_00.mp4",
+      "tail_src": "assets/tails/seg_shot02_nezha_lock_strike_00.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": true,
+          "score": 0.92,
+          "detail": "[action_consistency] 叙事节拍完整兑现：枪尖撞击→锁裂→碎片飞散→门掀开→哪吒悬停；主角身份与portrait一致，motif（莲花额饰、乾坤圈、混天绫红带、火尖枪火焰）在聚焦镜头中清晰可辨；无穿模或物理违和，仅末段门开"
+        }
+      ],
+      "had_repair": false
+    },
+    {
+      "id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "index": 0,
+      "mode": "r2v",
+      "planned_duration_s": 10,
+      "duration_s": 10,
+      "prompt": "从静态帧开始，哪吒悬停在塔前，右手前伸掷出混天绫。红绫如一条赤红火蛇从手中飞出，向前延伸，末端已开始环绕塔身。镜头从哪吒身后中景开始，缓慢向右侧环绕塔身移动，跟随红绫延伸的轨迹，保持画面中哪吒与塔的关系稳定。红绫在飞行中柔软飘动，绸缎表面反射黄昏暖光，呈现流动的赤红色泽。塔身金色塔砖和断裂飞檐在逆光中呈现剪影，塔门已敞开，金锁碎片散落漂浮在塔门周围。背景黄昏云海翻涌，闪电偶尔劈开云层，暖橙色逆光勾勒哪吒精悍身形轮廓，风火轮双焰在脚下稳定燃烧，火尖枪斜持在身侧。",
+      "end_state": "红绫已绕塔身约三分之一，末端在空中飘动停定，红绫表面保持赤红绸缎质感，尚未燃起火焰。哪吒悬停在塔前，右手仍前伸，莲花纹额饰清晰，乾坤圈在左上臂，玄黑护心甲和赤红战裙在逆光中呈现剪影，风火轮双焰稳定，火尖枪斜持。塔门敞开，金锁碎片散落漂浮在门框周围，塔身琉璃纹暗淡无光。背景黄昏云海翻涌，闪电在远处云层中定格，暖橙色逆光从塔身后方透出。",
+      "start_anchor": "a03_nezha_silk_ring_start",
+      "src": "assets/segments/seg_shot03_nezha_silk_ring_00.mp4",
+      "tail_src": "assets/tails/seg_shot03_nezha_silk_ring_00.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": false,
+          "score": 0.64,
+          "detail": "[global_alignment] 视频为静态单帧循环（0-10s无任何镜头运动、红绫未延伸、塔纹未变化），完全未体现‘缓慢环绕塔身移动’‘红绫延伸’‘琉璃纹暗淡’等动态叙事要求，与shot.visual_intent及story_goa"
+        },
+        {
+          "kind": "repair",
+          "strategy": "seed_reroll",
+          "detail": "attempt 1 overall=0.64 + aes=0.95，prompt已含明确动态指令，视频静态循环属典型happyhorse随机性未听话，优先零成本重抽。"
+        },
+        {
+          "kind": "repair_detail",
+          "strategy": "seed_reroll",
+          "detail": "seed 0 → 7919 (attempt 1); prompt unchanged (232 chars)"
+        },
+        {
+          "kind": "validation",
+          "attempt": 2,
+          "passed": false,
+          "score": 0.71,
+          "detail": "[global_alignment] 视频全程未体现‘镜头从哪吒身后中景开始，缓慢环绕塔身移动’的运镜意图；实际为静态广角构图+红绫延伸动画，无环绕运动；且 end_state 要求‘红绫绕塔约三分之一’未达成（视频末帧红绫仅延伸至塔腰中部"
+        },
+        {
+          "kind": "repair",
+          "strategy": "micro_adjust",
+          "detail": "attempt 2 同 glob/运镜轴再次失败，prompt 已有描述但模型未执行。edit_prompt 提供极具体的运镜与 end_state 约束，适合 micro_adjust 注入时间戳与强指令强化执行。"
+        },
+        {
+          "kind": "repair_detail",
+          "strategy": "micro_adjust",
+          "detail": "prompt_len 232 → 307, change: 在prompt中加入镜头环绕角度描述和红绫末端绕过飞檐回弯的细节，end_state明确弧线结构，对齐global_alignment缺失的环绕运镜和环绕状态。"
+        },
+        {
+          "kind": "validation",
+          "attempt": 3,
+          "passed": true,
+          "score": 0.75,
+          "detail": "[global_alignment] 镜头未完成从正面到侧面的环绕过渡：10秒内视角变化不足，塔身仍基本呈正面构图，红绫末端未明确绕过左侧飞檐形成弧线；end_state要求的‘塔左侧飞檐与红绫弧线关系清晰’未兑现。"
+        }
+      ],
+      "had_repair": true
+    },
+    {
+      "id": "seg_shot03_nezha_silk_ring_01",
+      "shot_id": "shot03_nezha_silk_ring",
+      "index": 1,
+      "mode": "r2v",
+      "planned_duration_s": 14,
+      "duration_s": 14,
+      "prompt": "从上一段尾帧开始，红绫继续绕塔身延伸，已绕过塔身约三分之二。红绫表面开始出现细小的金红色火焰，从哪吒手中的红绫根部向末端蔓延，火焰如液体般在绸缎表面流动，最初只是火星，随后连成细长的火苗贴附在红绫表面。镜头继续缓慢环绕塔身移动，保持中景，跟随红绫延伸轨迹，画面中塔的更多侧面逐渐展现。塔身金色塔砖的裂缝中开始透出微弱的暖光，琉璃纹隐约可见，被红绫上的火焰映出暗金色反光。黄昏云海持续翻涌，暖橙逆光与红绫上的火焰交相辉映，哪吒悬停姿态稳定，风火轮双焰和火尖枪上的火焰与红绫上的新火焰形成呼应。",
+      "end_state": "红绫已绕塔身约三分之二，红绫表面金红色火焰稳定燃烧，火焰呈细长条状贴附在绸缎表面，从根部到末端均匀分布，末端红绫飘动但火焰不散。哪吒悬停在塔前，右手前伸，莲花纹额饰在火光中映亮，乾坤圈在左上臂反光，风火轮双焰稳定，火尖枪斜持枪尖带火。塔门敞开，金锁碎片仍在漂浮，塔身琉璃纹微微泛出暗金色光芒，尚未完全点亮，裂缝中透出微弱暖光。背景黄昏云海，闪电定格在远处云层中。",
+      "start_anchor": "",
+      "src": "assets/segments/seg_shot03_nezha_silk_ring_01.mp4",
+      "tail_src": "assets/tails/seg_shot03_nezha_silk_ring_01.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": true,
+          "score": 0.78,
+          "detail": "[action_consistency] 绫火焰蔓延节拍未兑现：视频中红绫全程无火焰，仅飘动绸带；塔身琉璃纹始终暗淡未泛微光；哪吒面部在中景镜头中与portrait参考图明显不符（眉眼结构偏现代真人建模，非武神刚毅轮廓），motif守恒失败"
+        }
+      ],
+      "had_repair": false
+    },
+    {
+      "id": "seg_shot03_nezha_silk_ring_02",
+      "shot_id": "shot03_nezha_silk_ring",
+      "index": 2,
+      "mode": "i2v",
+      "planned_duration_s": 14,
+      "duration_s": 14,
+      "prompt": "从上一段尾帧继续，红绫绕塔接近一周，即将首尾相接。红绫上的火焰骤然增强，从细长火苗变成明亮的金红色烈焰，火焰腾起一掌高，整条红绫变成一条燃烧的火带环绕塔身。塔身琉璃纹被火焰映照，从暗淡的暗金色迅速点亮成明亮的金色，光芒沿琉璃纹路如电路般蔓延，从塔底向塔腰再向塔顶逐层推进，每一条纹路被点亮时都发出短暂的金色闪光。镜头继续环绕但速度略微放缓，开始从塔身中景向远景自然过渡，画面中塔的完整轮廓逐渐显现，云海和天空占据更多画面。云海翻涌加剧，闪电频率降低，黄昏天空从暖橙开始向深紫过渡。",
+      "end_state": "红绫绕塔接近一周，仅差约一掌距离首尾相接，红绫上金红色烈焰熊熊燃烧，火苗腾起一掌高，形成不完整的火环。塔身琉璃纹已点亮约三分之二，金色光芒沿纹路清晰可见，从塔腰向塔顶蔓延，塔底纹路已全亮，塔顶纹路仍暗淡。镜头处于塔身侧面的中远景，塔的完整轮廓在画面中清晰可见。哪吒悬停在塔前，身影开始变小但仍清晰可辨，风火轮双焰稳定如两颗小星。塔门敞开，碎片仍在漂浮。背景黄昏云海翻涌，天空暖橙与深紫渐变，闪电稀疏。",
+      "start_anchor": "",
+      "src": "assets/segments/seg_shot03_nezha_silk_ring_02.mp4",
+      "tail_src": "assets/tails/seg_shot03_nezha_silk_ring_02.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": false,
+          "score": 0.74,
+          "detail": "[action_consistency] 主角哪吒全程未出现，违反‘全片只有哪吒一个人’硬约束；segment.prompt 描述‘哪吒悬停在塔前’但视频中无任何人物，motif（混天绫、风火轮、火尖枪）虽存在但缺失主体身份锚定，叙事弧断裂"
+        },
+        {
+          "kind": "repair",
+          "strategy": "seed_reroll",
+          "detail": "attempt 1 overall=0.74 + aes=0.94，cons低系模型随机漏画主体，prompt已明确描述且edit_prompt为空，优先零成本重抽。"
+        },
+        {
+          "kind": "repair_detail",
+          "strategy": "seed_reroll",
+          "detail": "seed 0 → 7919 (attempt 1); prompt unchanged (240 chars)"
+        },
+        {
+          "kind": "validation",
+          "attempt": 2,
+          "passed": true,
+          "score": 0.75,
+          "detail": "[action_consistency] 红绫未完成‘接近一周仅差一掌’的构型，实际视频中红绫已首尾相接形成完整火环；塔身琉璃纹全亮（非三分之二），与end_state描述严重不符；哪吒在中段即缩为极小点，身份焦点丢失。"
+        }
+      ],
+      "had_repair": true
+    },
+    {
+      "id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "index": 3,
+      "mode": "i2v",
+      "planned_duration_s": 14,
+      "duration_s": 14,
+      "prompt": "红绫首尾相接，绕塔一周形成完整火环。火环骤然爆发出耀眼的金红色光芒，亮度倍增，光芒向四周扩散，在塔身周围形成一个完美的圆形光环，光环边缘锐利，内部火焰翻腾。塔身琉璃纹从三分之二迅速全部点亮，光芒如洪水般冲过剩余纹路，整座塔的金色琉璃纹路如血管般全部亮起，塔身从暗淡的金色变成发光的金红色，每一块琉璃砖都透出内部暖光。镜头从塔身侧面中远景开始明显后拉，画面中塔的比例开始缩小，云海和天空占据更多画面，塔的完整轮廓与火环的关系一目了然。火环持续稳定发光，在黄昏渐暗的天空中成为最亮的光源。闪电几乎完全平息，天空从暖橙向深紫过渡加速。",
+      "end_state": "火环完整环绕塔身，金红色火焰稳定燃烧，形成一个完美的圆形光环，光环直径略大于塔身最宽处，边缘锐利，内部火焰翻腾不息。塔身琉璃纹全部点亮，金色纹路清晰明亮，从塔底到塔顶每一块琉璃砖都透出暖光，整座塔呈现发光状态，如一盏巨灯悬浮在云海之上。镜头已拉至远景，塔在画面中约占三分之一，哪吒变成一个小点悬停在塔前，风火轮双焰如两颗微小的金红色星点。塔门敞开，碎片已飘散至不可见。背景黄昏云海翻涌，天空呈暖橙与深紫渐变，闪电已完全平息。",
+      "start_anchor": "",
+      "src": "assets/segments/seg_shot03_nezha_silk_ring_03.mp4",
+      "tail_src": "assets/tails/seg_shot03_nezha_silk_ring_03.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": false,
+          "score": 0.7,
+          "detail": "[global_alignment] 视频全程为静态远景固定镜头，未体现prompt要求的‘镜头从塔身侧面中远景开始明显后拉’的运镜变化；末帧构图虽接近end_state，但缺乏镜头后拉过程，节奏未实现‘由动至静’的过渡，叙事收束感弱。"
+        },
+        {
+          "kind": "repair",
+          "strategy": "seed_reroll",
+          "detail": "attempt 1 overall=0.70 + aes=0.94，prompt已含明确运镜指令，glob偏低属happyhorse随机性未执行，优先零成本重抽。"
+        },
+        {
+          "kind": "repair_detail",
+          "strategy": "seed_reroll",
+          "detail": "seed 0 → 7919 (attempt 1); prompt unchanged (264 chars)"
+        },
+        {
+          "kind": "validation",
+          "attempt": 2,
+          "passed": false,
+          "score": 0.71,
+          "detail": "[action_consistency] 视频中无哪吒身影，缺失主角 identity；红绫火环形成过程无动态延伸轨迹，塔身琉璃纹点亮为静态发光而非‘如洪水蔓延’的动态节拍；物理上火环悬浮无支撑且与塔无接触逻辑，属严重动作连贯性断裂。"
+        },
+        {
+          "kind": "repair",
+          "strategy": "micro_adjust",
+          "detail": "attempt 2 prompt 缺失哪吒主体与火环动态接触逻辑，edit_prompt 指令具体明确，属 prompt 缺细节而非随机性，需 micro_adjust 精准补全 motif 与运镜。"
+        },
+        {
+          "kind": "repair_detail",
+          "strategy": "micro_adjust",
+          "detail": "prompt_len 264 → 404, change: 在prompt中明确哪吒悬停塔前且风火轮可见，改火环为紧贴塔身外缘缠绕接触，琉璃纹点亮改为由下至上逐层蔓延的动态光流；end_state同步将悬浮空环改为缠绕接触，保留哪吒小点悬停描述。"
+        },
+        {
+          "kind": "validation",
+          "attempt": 3,
+          "passed": true,
+          "score": 0.83,
+          "detail": "[action_consistency] 红绫火环闭合与塔纹点亮节拍基本兑现，但火焰蔓延节奏略快、塔顶纹路未完全点亮即进入拉远镜头，motif（莲花额饰/乾坤圈）在远景中辨识度下降；无穿模或identity漂移，属电影化合理压缩。"
+        }
+      ],
+      "had_repair": true
+    },
+    {
+      "id": "seg_shot03_nezha_silk_ring_04",
+      "shot_id": "shot03_nezha_silk_ring",
+      "index": 4,
+      "mode": "i2v",
+      "planned_duration_s": 10,
+      "duration_s": 10,
+      "prompt": "镜头继续平稳后拉，从远景拉至极远景。琉璃塔在云海中逐渐变小，从占据画面三分之一缩小到约十分之一，塔的完整轮廓和环绕它的火环始终清晰可见。火环持续发出稳定的金红色光芒，在逐渐变暗的黄昏天空中成为唯一的光源，光芒在云海表面投射出暖色反光。塔身琉璃纹全部点亮，在远景中如金色脉络清晰可见，整座塔如一座发光的灯塔悬浮在翻涌的云海之上。哪吒变成一个小点悬停在塔前，风火轮的双焰在极远景中几乎不可见。云海翻涌速度放缓，从激烈翻腾变为缓慢起伏，黄昏天空的暖橙色逐渐向深紫色过渡，整体氛围从激烈归于宁静。镜头最终定格在极远景，画面构图稳定，琉璃塔居于画面中央偏上，被火环环绕，下方是缓慢翻涌的云海，上方是渐暗的黄昏天空。",
+      "end_state": "极远景，琉璃塔在云海中居于画面中央偏上，被完整的金红色火环环绕，火环在暗色天空中明亮稳定。塔身琉璃纹全部点亮成金色脉络，从塔底到塔顶清晰可见，整座塔如一座发光的灯塔。哪吒变成一个小点悬停在塔前，风火轮双焰如微星闪烁。塔门敞开不可见细节。云海翻涌缓慢，如波浪般起伏，黄昏天空呈深紫与暖橙渐变，闪电完全平息，画面宁静，史诗感，暖橙与深紫对比，最终画面构图稳定。",
+      "start_anchor": "",
+      "src": "assets/segments/seg_shot03_nezha_silk_ring_04.mp4",
+      "tail_src": "assets/tails/seg_shot03_nezha_silk_ring_04.png",
+      "validation": [
+        {
+          "kind": "validation",
+          "attempt": 1,
+          "passed": true,
+          "score": 0.84,
+          "detail": "[action_consistency] 视频中哪吒完全未出现（无小点悬停），违反 prompt '哪吒变成一个小点悬停在塔前' 的核心动作连贯性要求；虽塔与火环完整、构图史诗，但主角 identity 缺失导致叙事弧断裂。"
+        }
+      ],
+      "had_repair": false
+    }
+  ],
+  "transitions": [
+    {
+      "id": "tr01_nezha_tower_break_to_lock_strike",
+      "from_shot": "shot01_nezha_tower_break",
+      "to_shot": "shot02_nezha_lock_strike",
+      "mode": "cut",
+      "duration_s": null
+    },
+    {
+      "id": "tr02_nezha_lock_strike_to_silk_ring",
+      "from_shot": "shot02_nezha_lock_strike",
+      "to_shot": "shot03_nezha_silk_ring",
+      "mode": "cut",
+      "duration_s": null
+    }
+  ],
+  "events": [
+    {
+      "seq": 0,
+      "t": 0.0,
+      "source": "dsh",
+      "type": "dsh.user_message",
+      "message": "请制作一条约 90 秒、1920x1080 的高质量神话动作短片。由 ReCA 的 planner 自己决定镜头数量、景别和分镜边界，不要把下面文字当成已经写好的镜头表。 故事必须让观众一眼看懂：黄昏，天庭琉璃塔从云层里裂开。哪吒踩风火轮从雷云里冲出，火尖枪挑开塔门金锁，混天绫把整座裂塔缠成一条火环。全片只有哪吒一个人，画面里不要任何女性、不要现代晚装、不要第二个人。 哪吒必须是明确成年的年轻男性武神，视觉年龄约二十岁，精悍少年身形但不是幼童脸、不是小孩身体、不是女相。莲花纹额饰，乾坤圈在肘上，混天绫赤红飞带，脚下两只风火轮喷金红焰，火尖枪是一根带火的长枪。玄黑护心甲、赤红战裙、小臂护臂。身份、脸、服装、武器全程不变。 地点始终是同一座正在崩裂的琉璃塔：金色塔砖、断裂飞檐、黄昏云海、电光。不要天兵、不要龙王、不要敖丙。 叙事只要三次清楚的变化，每件只做一次： 1. 风火轮从厚云里甩出，哪吒侧身穿过裂开的塔腰，碎片在身后拉成光带…"
+    },
+    {
+      "seq": 1,
+      "t": 1.2,
+      "source": "dsh",
+      "type": "dsh.agent_message",
+      "message": "我会调用 ReCA，把故事规划成多镜头、生成一致性资产，并持续检查渲染状态。"
+    },
+    {
+      "seq": 2,
+      "t": 2.2,
+      "source": "dsh",
+      "type": "dsh.tool.start",
+      "tool": "reca_create_video",
+      "status": "calling",
+      "detail": "提交 90 秒、16:9、Wan 3.0 视频任务"
+    },
+    {
+      "seq": 3,
+      "t": 3.3,
+      "source": "dsh",
+      "type": "dsh.tool.result",
+      "tool": "reca_create_video",
+      "status": "queued",
+      "detail": "run_id: nezha_fire_pagoda"
+    },
+    {
+      "seq": 4,
+      "t": 4.2,
+      "source": "reca",
+      "type": "reca.plan.start",
+      "label": "Recursive planning"
+    },
+    {
+      "seq": 5,
+      "t": 5.2,
+      "source": "reca",
+      "type": "reca.plan.ready",
+      "label": "3 shots · 8 segments",
+      "count": 3
+    },
+    {
+      "seq": 6,
+      "t": 6.2,
+      "source": "dsh",
+      "type": "dsh.tool.status",
+      "tool": "reca_get_status",
+      "status": "running",
+      "detail": "规划完成：3 shots / 8 segments"
+    },
+    {
+      "seq": 7,
+      "t": 7.0,
+      "source": "reca",
+      "type": "reca.asset.ready",
+      "node_id": "nezha",
+      "kind": "portraits",
+      "label": "nezha"
+    },
+    {
+      "seq": 8,
+      "t": 7.6,
+      "source": "reca",
+      "type": "reca.asset.ready",
+      "node_id": "cracked_glazed_tower",
+      "kind": "locations",
+      "label": "cracked glazed tower"
+    },
+    {
+      "seq": 9,
+      "t": 8.2,
+      "source": "reca",
+      "type": "reca.asset.ready",
+      "node_id": "golden_lock",
+      "kind": "props",
+      "label": "golden lock"
+    },
+    {
+      "seq": 10,
+      "t": 8.8,
+      "source": "reca",
+      "type": "reca.anchor.ready",
+      "node_id": "a01_nezha_tower_break_start",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Start anchor ready"
+    },
+    {
+      "seq": 11,
+      "t": 9.4,
+      "source": "reca",
+      "type": "reca.anchor.ready",
+      "node_id": "a02_nezha_lock_strike_start",
+      "shot_id": "shot02_nezha_lock_strike",
+      "label": "Start anchor ready"
+    },
+    {
+      "seq": 12,
+      "t": 10.0,
+      "source": "reca",
+      "type": "reca.anchor.ready",
+      "node_id": "a03_nezha_silk_ring_start",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Start anchor ready"
+    },
+    {
+      "seq": 13,
+      "t": 10.6,
+      "source": "dsh",
+      "type": "dsh.tool.status",
+      "tool": "reca_get_status",
+      "status": "running",
+      "detail": "资产就绪：6 images"
+    },
+    {
+      "seq": 14,
+      "t": 11.4,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot01_nezha_tower_break_00",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Rendering"
+    },
+    {
+      "seq": 15,
+      "t": 11.85,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot02_nezha_lock_strike_00",
+      "shot_id": "shot02_nezha_lock_strike",
+      "label": "Rendering"
+    },
+    {
+      "seq": 16,
+      "t": 12.3,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Rendering"
+    },
+    {
+      "seq": 17,
+      "t": 12.75,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot01_nezha_tower_break_00",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Validator 0.78",
+      "detail": "[action_consistency] 主角面部在中后段出现轻微真人化漂移（与portrait参考图对比：额饰模糊、神目光效丢失、下颌线变软），且‘碎片光带达到最亮’的关键节拍未兑现——视频中碎片光带持续衰减，无峰值爆发；塔腰断裂处未呈现"
+    },
+    {
+      "seq": 18,
+      "t": 13.5,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot01_nezha_tower_break_00",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 19,
+      "t": 14.3,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot01_nezha_tower_break_01",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Rendering from previous tail"
+    },
+    {
+      "seq": 20,
+      "t": 14.75,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot02_nezha_lock_strike_00",
+      "shot_id": "shot02_nezha_lock_strike",
+      "label": "Validator 0.92",
+      "detail": "[action_consistency] 叙事节拍完整兑现：枪尖撞击→锁裂→碎片飞散→门掀开→哪吒悬停；主角身份与portrait一致，motif（莲花额饰、乾坤圈、混天绫红带、火尖枪火焰）在聚焦镜头中清晰可辨；无穿模或物理违和，仅末段门开"
+    },
+    {
+      "seq": 21,
+      "t": 15.5,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot02_nezha_lock_strike_00",
+      "shot_id": "shot02_nezha_lock_strike",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 22,
+      "t": 16.3,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot01_nezha_tower_break_01",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Validator 0.78",
+      "detail": "[action_consistency] 视频末段未兑现‘悬停于塔门前约20米处、双手持枪、枪尖指向金锁’的关键 end_state；哪吒始终高速飞行未减速悬停, 且金锁在末帧仍被塔身遮挡不可辨，motif（锁体云纹反光）未在聚焦镜头中呈现"
+    },
+    {
+      "seq": 23,
+      "t": 17.05,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot01_nezha_tower_break_01",
+      "shot_id": "shot01_nezha_tower_break",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 24,
+      "t": 17.85,
+      "source": "reca",
+      "type": "reca.validation.flagged",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.64",
+      "detail": "[global_alignment] 视频为静态单帧循环（0-10s无任何镜头运动、红绫未延伸、塔纹未变化），完全未体现‘缓慢环绕塔身移动’‘红绫延伸’‘琉璃纹暗淡’等动态叙事要求，与shot.visual_intent及story_goa"
+    },
+    {
+      "seq": 25,
+      "t": 18.6,
+      "source": "reca",
+      "type": "reca.repair.start",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "strategy": "seed_reroll",
+      "label": "seed reroll",
+      "detail": "attempt 1 overall=0.64 + aes=0.95，prompt已含明确动态指令，视频静态循环属典型happyhorse随机性未听话，优先零成本重抽。"
+    },
+    {
+      "seq": 26,
+      "t": 19.35,
+      "source": "reca",
+      "type": "reca.validation.flagged",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.71",
+      "detail": "[global_alignment] 视频全程未体现‘镜头从哪吒身后中景开始，缓慢环绕塔身移动’的运镜意图；实际为静态广角构图+红绫延伸动画，无环绕运动；且 end_state 要求‘红绫绕塔约三分之一’未达成（视频末帧红绫仅延伸至塔腰中部"
+    },
+    {
+      "seq": 27,
+      "t": 20.1,
+      "source": "reca",
+      "type": "reca.repair.start",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "strategy": "micro_adjust",
+      "label": "micro adjust",
+      "detail": "attempt 2 同 glob/运镜轴再次失败，prompt 已有描述但模型未执行。edit_prompt 提供极具体的运镜与 end_state 约束，适合 micro_adjust 注入时间戳与强指令强化执行。"
+    },
+    {
+      "seq": 28,
+      "t": 20.85,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.75",
+      "detail": "[global_alignment] 镜头未完成从正面到侧面的环绕过渡：10秒内视角变化不足，塔身仍基本呈正面构图，红绫末端未明确绕过左侧飞檐形成弧线；end_state要求的‘塔左侧飞檐与红绫弧线关系清晰’未兑现。"
+    },
+    {
+      "seq": 29,
+      "t": 21.6,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot03_nezha_silk_ring_00",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 30,
+      "t": 22.4,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot03_nezha_silk_ring_01",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Rendering from previous tail"
+    },
+    {
+      "seq": 31,
+      "t": 22.85,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot03_nezha_silk_ring_01",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.78",
+      "detail": "[action_consistency] 绫火焰蔓延节拍未兑现：视频中红绫全程无火焰，仅飘动绸带；塔身琉璃纹始终暗淡未泛微光；哪吒面部在中景镜头中与portrait参考图明显不符（眉眼结构偏现代真人建模，非武神刚毅轮廓），motif守恒失败"
+    },
+    {
+      "seq": 32,
+      "t": 23.6,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot03_nezha_silk_ring_01",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 33,
+      "t": 24.4,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot03_nezha_silk_ring_02",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Rendering from previous tail"
+    },
+    {
+      "seq": 34,
+      "t": 24.85,
+      "source": "reca",
+      "type": "reca.validation.flagged",
+      "node_id": "seg_shot03_nezha_silk_ring_02",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.74",
+      "detail": "[action_consistency] 主角哪吒全程未出现，违反‘全片只有哪吒一个人’硬约束；segment.prompt 描述‘哪吒悬停在塔前’但视频中无任何人物，motif（混天绫、风火轮、火尖枪）虽存在但缺失主体身份锚定，叙事弧断裂"
+    },
+    {
+      "seq": 35,
+      "t": 25.6,
+      "source": "reca",
+      "type": "reca.repair.start",
+      "node_id": "seg_shot03_nezha_silk_ring_02",
+      "shot_id": "shot03_nezha_silk_ring",
+      "strategy": "seed_reroll",
+      "label": "seed reroll",
+      "detail": "attempt 1 overall=0.74 + aes=0.94，cons低系模型随机漏画主体，prompt已明确描述且edit_prompt为空，优先零成本重抽。"
+    },
+    {
+      "seq": 36,
+      "t": 26.35,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot03_nezha_silk_ring_02",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.75",
+      "detail": "[action_consistency] 红绫未完成‘接近一周仅差一掌’的构型，实际视频中红绫已首尾相接形成完整火环；塔身琉璃纹全亮（非三分之二），与end_state描述严重不符；哪吒在中段即缩为极小点，身份焦点丢失。"
+    },
+    {
+      "seq": 37,
+      "t": 27.1,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot03_nezha_silk_ring_02",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 38,
+      "t": 27.9,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Rendering from previous tail"
+    },
+    {
+      "seq": 39,
+      "t": 28.35,
+      "source": "reca",
+      "type": "reca.validation.flagged",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.70",
+      "detail": "[global_alignment] 视频全程为静态远景固定镜头，未体现prompt要求的‘镜头从塔身侧面中远景开始明显后拉’的运镜变化；末帧构图虽接近end_state，但缺乏镜头后拉过程，节奏未实现‘由动至静’的过渡，叙事收束感弱。"
+    },
+    {
+      "seq": 40,
+      "t": 29.1,
+      "source": "reca",
+      "type": "reca.repair.start",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "strategy": "seed_reroll",
+      "label": "seed reroll",
+      "detail": "attempt 1 overall=0.70 + aes=0.94，prompt已含明确运镜指令，glob偏低属happyhorse随机性未执行，优先零成本重抽。"
+    },
+    {
+      "seq": 41,
+      "t": 29.85,
+      "source": "reca",
+      "type": "reca.validation.flagged",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.71",
+      "detail": "[action_consistency] 视频中无哪吒身影，缺失主角 identity；红绫火环形成过程无动态延伸轨迹，塔身琉璃纹点亮为静态发光而非‘如洪水蔓延’的动态节拍；物理上火环悬浮无支撑且与塔无接触逻辑，属严重动作连贯性断裂。"
+    },
+    {
+      "seq": 42,
+      "t": 30.6,
+      "source": "reca",
+      "type": "reca.repair.start",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "strategy": "micro_adjust",
+      "label": "micro adjust",
+      "detail": "attempt 2 prompt 缺失哪吒主体与火环动态接触逻辑，edit_prompt 指令具体明确，属 prompt 缺细节而非随机性，需 micro_adjust 精准补全 motif 与运镜。"
+    },
+    {
+      "seq": 43,
+      "t": 31.35,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.83",
+      "detail": "[action_consistency] 红绫火环闭合与塔纹点亮节拍基本兑现，但火焰蔓延节奏略快、塔顶纹路未完全点亮即进入拉远镜头，motif（莲花额饰/乾坤圈）在远景中辨识度下降；无穿模或identity漂移，属电影化合理压缩。"
+    },
+    {
+      "seq": 44,
+      "t": 32.1,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot03_nezha_silk_ring_03",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 45,
+      "t": 32.9,
+      "source": "reca",
+      "type": "reca.segment.start",
+      "node_id": "seg_shot03_nezha_silk_ring_04",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Rendering from previous tail"
+    },
+    {
+      "seq": 46,
+      "t": 33.35,
+      "source": "reca",
+      "type": "reca.validation.pass",
+      "node_id": "seg_shot03_nezha_silk_ring_04",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Validator 0.84",
+      "detail": "[action_consistency] 视频中哪吒完全未出现（无小点悬停），违反 prompt '哪吒变成一个小点悬停在塔前' 的核心动作连贯性要求；虽塔与火环完整、构图史诗，但主角 identity 缺失导致叙事弧断裂。"
+    },
+    {
+      "seq": 47,
+      "t": 34.1,
+      "source": "reca",
+      "type": "reca.segment.ready",
+      "node_id": "seg_shot03_nezha_silk_ring_04",
+      "shot_id": "shot03_nezha_silk_ring",
+      "label": "Segment ready"
+    },
+    {
+      "seq": 48,
+      "t": 34.9,
+      "source": "dsh",
+      "type": "dsh.tool.status",
+      "tool": "reca_get_status",
+      "status": "running",
+      "detail": "已完成 8/8 segments，开始合成"
+    },
+    {
+      "seq": 49,
+      "t": 35.8,
+      "source": "reca",
+      "type": "reca.concat.start",
+      "label": "Concatenating final film"
+    },
+    {
+      "seq": 50,
+      "t": 36.8,
+      "source": "reca",
+      "type": "reca.final.ready",
+      "node_id": "root",
+      "label": "final.mp4 ready"
+    },
+    {
+      "seq": 51,
+      "t": 37.8,
+      "source": "dsh",
+      "type": "dsh.tool.result",
+      "tool": "reca_get_artifact",
+      "status": "succeeded",
+      "detail": "最终视频和可审计执行轨迹已交付"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Add this row to the Harness web profile patch after installing the package.
+- insert:
+    - id: reca-overlay-demo
+      name: '@reca-demo/dsh-overlay'

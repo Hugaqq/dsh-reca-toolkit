@@ -1,14 +1,15 @@
-import { defineTool } from "@deepseek-ai/dsh-tools";
+import { defineTool } from "./define-tool.js";
 import { RecaClient } from "./client.js";
-import { RecaRuntime } from "./runtime.js";
 import { renderJson } from "./renderers/json.js";
 import { registerDirectorSkill } from "./skill.js";
 import { registerCancelRun } from "./tools/cancel-run.js";
 import { registerCreateVideo } from "./tools/create-video.js";
 import { registerGetArtifact } from "./tools/get-artifact.js";
+import { registerGetCapabilities } from "./tools/get-capabilities.js";
 import { registerGetStatus } from "./tools/get-status.js";
 import { registerListRuns } from "./tools/list-runs.js";
 import { registerResumeRun } from "./tools/resume-run.js";
+import { registerTraceBridge } from "./trace-bridge.js";
 
 export const name = "dsh-reca-toolkit";
 export const inject = ["tools", "skills"];
@@ -50,16 +51,13 @@ export async function apply(ctx, config = {}) {
   if (!ctx?.skills || typeof ctx.skills.register !== "function") {
     throw new Error("dsh-reca-toolkit requires the DSH skills service");
   }
-  const runtime = new RecaRuntime({
-    host: config.gatewayHost,
-    port: config.gatewayPort,
-  });
-  const client = new RecaClient(config.gatewayUrl, runtime);
-  runtime.ensure().catch((err) => {
-    if (ctx.logger?.warn) ctx.logger.warn("%s runtime: %s", name, err.message);
+  const client = new RecaClient(config.gatewayUrl, config.gatewayToken);
+  registerTraceBridge(ctx, client, {
+    authority: config.traceAuthority || process.env.RECA_TRACE_AUTHORITY,
   });
   const disposers = [
     registerCreateVideo(ctx, client),
+    registerGetCapabilities(ctx, client),
     registerGetStatus(ctx, client),
     registerCancelRun(ctx, client),
     registerResumeRun(ctx, client),
@@ -71,10 +69,7 @@ export async function apply(ctx, config = {}) {
   ];
   disposers.push(ctx.skills.register(registerDirectorSkill()));
   if (ctx.logger?.info) ctx.logger.info("%s ready: ReCA Director tools are available", name);
-  return () => {
-    runtime.stopOwned();
-    disposers.forEach((dispose) => {
-      if (typeof dispose === "function") dispose();
-    });
-  };
+  return () => disposers.forEach((dispose) => {
+    if (typeof dispose === "function") dispose();
+  });
 }

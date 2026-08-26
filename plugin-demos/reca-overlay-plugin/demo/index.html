@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReCA Overlay Plugin — DeepSeek Harness Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="demo-note">
+    <span><b>PLUGIN DEMO</b> · shell.overlay additive slot</span>
+    <span>原生 Chat 保持可见 · 右侧浮动抽屉</span>
+  </div>
+
+  <main class="harness-shell">
+    <aside class="harness-sidebar">
+      <div class="wordmark">
+        <span class="whale">◒</span>
+        <strong>DEEPSEEK</strong>
+        <small>HARNESS</small>
+      </div>
+      <button class="new-thread"><span>＋</span> New thread <kbd>⌘ K</kbd></button>
+      <div class="nav-section">
+        <p>WORKSPACE</p>
+        <button class="nav-row"><span>⌕</span> Search</button>
+        <button class="nav-row"><span>◇</span> Agents</button>
+        <button class="nav-row"><span>⌁</span> Skills</button>
+      </div>
+      <div class="nav-section threads">
+        <p>RECENT</p>
+        <button class="thread active">
+          <span>ReCA Director — Wukong oath</span>
+          <small>Rendering · just now</small>
+        </button>
+        <button class="thread">
+          <span>Trace a failed video run</span>
+          <small>23 min ago</small>
+        </button>
+        <button class="thread">
+          <span>Prepare catalyst workflow</span>
+          <small>Yesterday</small>
+        </button>
+      </div>
+      <div class="sidebar-footer">
+        <span class="avatar">Q</span>
+        <div><strong>Qifan</strong><small>Local workspace</small></div>
+        <button>•••</button>
+      </div>
+    </aside>
+
+    <section class="conversation">
+      <header class="conversation-header">
+        <div>
+          <strong>ReCA Director — Wukong oath</strong>
+          <span class="branch">main</span>
+        </div>
+        <div class="header-actions">
+          <button>Share</button>
+          <button>•••</button>
+        </div>
+      </header>
+      <nav class="view-tabs">
+        <button class="active">Chat</button>
+        <button>Trajectory</button>
+      </nav>
+
+      <div class="messages">
+        <article class="message user-message">
+          <div class="message-avatar user">Q</div>
+          <div class="message-content">
+            <header><strong>You</strong><time>14:32</time></header>
+            <p>用 ReCA 制作一条花果山誓言的电影感短片。悟空站在悬崖边，猴群逐渐聚集，最后用远景结束。保持角色、金箍棒和黄昏光线一致。</p>
+          </div>
+        </article>
+
+        <article class="message assistant-message">
+          <div class="message-avatar assistant">D</div>
+          <div class="message-content">
+            <header><strong>DeepSeek</strong><time>14:32</time></header>
+            <p>我会先锁定角色和场景锚点，再生成四个镜头。镜头内部采用串行尾帧衔接，镜头之间可并行渲染。</p>
+
+            <section class="tool-card complete">
+              <header>
+                <span class="tool-icon">⌘</span>
+                <div><strong>reca_create_video</strong><small>Completed in 1.3s</small></div>
+                <span class="tool-state">QUEUED</span>
+              </header>
+              <div class="tool-body">
+                <span><b>run_id</b> wukong_huaguo_oath</span>
+                <span><b>shots</b> 4</span>
+                <span><b>backend</b> wan3.0-video</span>
+              </div>
+            </section>
+
+            <p>任务已经进入 ReCA Director。右侧 Trace 会独立更新，不需要持续占用对话或反复调用状态工具。</p>
+
+            <section class="tool-card running">
+              <header>
+                <span class="tool-icon spin">◌</span>
+                <div><strong>reca_get_status</strong><small>Run is rendering</small></div>
+                <span class="tool-state">68%</span>
+              </header>
+              <div class="tool-progress"><span></span></div>
+              <div class="tool-body compact">
+                <span>Plan ✓</span><span>Assets ✓</span><span>Render 7/10</span>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="message assistant-message ghost-message">
+          <div class="message-avatar assistant">D</div>
+          <div class="message-content">
+            <header><strong>DeepSeek</strong><time>14:34</time></header>
+            <div class="thinking"><i></i><i></i><i></i><span>Monitoring render progress</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="composer-wrap">
+        <div class="composer">
+          <textarea aria-label="Message" placeholder="Ask DeepSeek anything…"></textarea>
+          <div class="composer-footer">
+            <div><button>＋</button><button>⌘ Tools</button><button>Model · V4</button></div>
+            <button class="send">↑</button>
+          </div>
+        </div>
+        <small>DeepSeek can make mistakes. Check important information.</small>
+      </div>
+    </section>
+  </main>
+
+  <button id="drawer-launcher" class="drawer-launcher" aria-label="Open ReCA trace">
+    <span>R</span><b>ReCA trace</b><em id="launcher-progress">68%</em>
+  </button>
+
+  <aside id="reca-drawer" class="reca-drawer" aria-label="ReCA execution trace drawer">
+    <button id="resize-handle" class="resize-handle" aria-label="Resize drawer"></button>
+    <header class="drawer-header">
+      <div class="reca-brand">
+        <span class="reca-logo">R</span>
+        <div><small>RECA DIRECTOR</small><strong>Live execution trace</strong></div>
+      </div>
+      <div class="drawer-actions">
+        <button id="size-toggle" title="Change width">↔</button>
+        <button id="drawer-close" title="Close">×</button>
+      </div>
+    </header>
+
+    <section class="run-summary">
+      <div class="run-title">
+        <div><span class="live"><i></i> LIVE</span><strong>Flower-Fruit Mountain Oath</strong><small>wukong_huaguo_oath</small></div>
+        <b id="progress-number">68%</b>
+      </div>
+      <div class="progress-track"><span id="progress-bar"></span></div>
+      <div class="stage-rail">
+        <div class="stage done"><i>✓</i><span>Plan</span></div><b class="stage-line done"></b>
+        <div class="stage done"><i>✓</i><span>Assets</span></div><b class="stage-line done"></b>
+        <div class="stage active"><i>3</i><span>Render</span></div><b class="stage-line"></b>
+        <div class="stage"><i>4</i><span>Validate</span></div><b class="stage-line"></b>
+        <div class="stage"><i>5</i><span>Concat</span></div>
+      </div>
+    </section>
+
+    <div class="drawer-scroll">
+      <div class="tree-label"><span>EXECUTION TREE</span><span>12 nodes</span></div>
+      <div id="trace-tree" class="trace-tree">
+        <button class="tree-node active-root" data-id="root" data-status="ACTIVE" data-detail="Parallel shot graph with continuity anchors and a final concat." data-title="ROOT · 4 shots / 10 segments"><i></i><span><b>ROOT · 4 shots / 10 segments</b><small>RECA DIRECTOR</small></span><em>68%</em></button>
+        <button class="tree-node depth-1 done" data-id="plan" data-status="DONE" data-detail="Planner locked the oath arc, camera language, timing, and transitions." data-title="Narrative & shot plan"><i></i><span><b>Narrative & shot plan</b><small>PHASE</small></span><em>4 shots</em></button>
+        <button class="tree-node depth-1 done" data-id="assets" data-status="DONE" data-detail="Wukong identity sheet, mountain plate, sky palette, and prop anchors." data-title="Character anchors"><i></i><span><b>Character anchors</b><small>PHASE</small></span><em>7 images</em></button>
+        <button class="tree-node depth-1 done" data-id="shot01" data-status="DONE" data-detail="Establishing aerial into a controlled push toward the summit." data-title="Shot 01 · Summit arrival"><i></i><span><b>Shot 01 · Summit arrival</b><small>SHOT</small></span><em>2 segments</em></button>
+        <button class="tree-node depth-2 done" data-id="s01a" data-status="DONE" data-detail="Wide aerial. First-frame identity anchor passed validator." data-title="01A · cloud approach"><i></i><span><b>01A · cloud approach</b><small>SEGMENT</small></span><em>8.0s</em></button>
+        <button class="tree-node depth-2 done" data-id="s01b" data-status="DONE" data-detail="Hero lands against the orange horizon. Motion score 0.91." data-title="01B · landing beat"><i></i><span><b>01B · landing beat</b><small>SEGMENT</small></span><em>6.4s</em></button>
+        <button class="tree-node depth-1 running" data-id="shot02" data-status="ACTIVE" data-detail="The emotional hinge. Serial segments preserve face and staff continuity." data-title="Shot 02 · Cliff gaze"><i></i><span><b>Shot 02 · Cliff gaze</b><small>SHOT</small></span><em>3 / 4</em></button>
+        <button class="tree-node depth-2 done" data-id="s02a" data-status="DONE" data-detail="Medium profile, subtle wind and cloth movement." data-title="02A · shoulder turn"><i></i><span><b>02A · shoulder turn</b><small>SEGMENT</small></span><em>7.0s</em></button>
+        <button class="tree-node depth-2 running selected" data-id="s02b" data-status="ACTIVE" data-detail="Rendering close-up with controlled eye-line and staff silhouette." data-title="02B · oath close-up"><i></i><span><b>02B · oath close-up</b><small>SEGMENT</small></span><em id="segment-progress">72%</em></button>
+        <button class="tree-node depth-2 pending" data-id="s02c" data-status="PENDING" data-detail="Reverse landscape shot, scheduled after the current continuity tail." data-title="02C · mountain answer"><i></i><span><b>02C · mountain answer</b><small>SEGMENT</small></span><em>queued</em></button>
+        <button class="tree-node depth-1 pending" data-id="shot03" data-status="PENDING" data-detail="Crowd reaction and kinetic camera sweep." data-title="Shot 03 · Monkeys gather"><i></i><span><b>Shot 03 · Monkeys gather</b><small>SHOT</small></span><em>2 segments</em></button>
+        <button class="tree-node depth-1 pending" data-id="shot04" data-status="PENDING" data-detail="Final crane-out and title-safe hold for concat." data-title="Shot 04 · Oath tableau"><i></i><span><b>Shot 04 · Oath tableau</b><small>SHOT</small></span><em>2 segments</em></button>
+      </div>
+
+      <section class="inspector">
+        <header><div><small>NODE INSPECTOR</small><strong id="inspector-title">02B · oath close-up</strong></div><span id="inspector-state">ACTIVE</span></header>
+        <div class="video-thumb">
+          <div class="sun"></div><div class="mountains"></div><div class="hero"></div>
+          <button aria-label="Play preview">▶</button><span>VIDEO · 1080P</span>
+        </div>
+        <p id="inspector-detail">Rendering close-up with controlled eye-line and staff silhouette.</p>
+        <div class="facts"><span><b>Model</b> wan3.0-video</span><span><b>Anchor</b> tail-frame</span><span><b>Audit</b> continuity</span></div>
+      </section>
+    </div>
+
+    <footer class="drawer-footer"><span><i></i> Gateway synced 2s ago</span><button id="view-root">View root</button></footer>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

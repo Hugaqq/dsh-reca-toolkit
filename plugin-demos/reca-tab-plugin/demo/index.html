@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReCA conversation.view plugin demo</title>
+    <link rel="stylesheet" href="./shell.css">
+    <link rel="stylesheet" href="./reca.css">
+  </head>
+  <body>
+    <main class="harness-window">
+      <aside class="harness-rail" aria-label="Harness navigation">
+        <div class="harness-logo">D</div>
+        <button type="button" aria-label="New session">＋</button>
+        <div class="session-dots"><i></i><i class="active"></i><i></i></div>
+        <button class="rail-bottom" type="button" aria-label="Settings">⚙</button>
+      </aside>
+      <section class="harness-main">
+        <header class="harness-header">
+          <div>
+            <strong>ReCA multi-shot film</strong>
+            <span>~/dsh-reca-toolkit · deepseek-v4-pro</span>
+          </div>
+          <span class="harness-connected">● connected</span>
+        </header>
+        <nav class="harness-tabs" aria-label="Conversation views">
+          <button type="button">Chat</button>
+          <button type="button">Trajectory</button>
+          <button class="active" type="button">ReCA <span>plugin</span></button>
+        </nav>
+        <div class="harness-view" id="recaMount"></div>
+      </section>
+    </main>
+    <div class="demo-caption">
+      <span>Standalone preview</span>
+      <strong>Exact shape of the registered <code>conversation.view</code> tab</strong>
+    </div>
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

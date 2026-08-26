@@ -1,4 +1,4 @@
-import { defineTool } from "@deepseek-ai/dsh-tools";
+import { defineTool } from "../define-tool.js";
 import { renderJson } from "../renderers/json.js";
 
 export function registerGetStatus(ctx, client, name = "reca_get_status") {

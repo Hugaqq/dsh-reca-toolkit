@@ -1,4 +1,4 @@
-import { defineTool } from "@deepseek-ai/dsh-tools";
+import { defineTool } from "../define-tool.js";
 import { renderJson } from "../renderers/json.js";
 
 export function registerCreateVideo(ctx, client) {
@@ -13,15 +13,53 @@ export function registerCreateVideo(ctx, client) {
       resolution: { type: "string", description: "Target resolution, for example 1280x720." },
       style: { type: "string", description: "Overall visual style." },
       aspect_ratio: { type: "string", description: "Target aspect ratio, for example 16:9." },
-      backend: { type: "string", description: "Video backend, normally wan." },
+      backend: {
+        type: "string",
+        description: "Video backend: wan for Wan3.0 or wan27 for original hard-first-frame continuity.",
+      },
       enable_audit: { type: "boolean", description: "Run visual audit and repair." },
       validate_segments: { type: "boolean", description: "Run segment-level validation." },
+      force_i2v: {
+        type: "boolean",
+        description:
+          "Force normal Wan3 segments to use hard first-frame I2V without additional reference images.",
+      },
       seed: { type: "number", description: "Reproducible render seed." },
+      first_frame: {
+        type: "string",
+        description: "Optional first-frame image URL or server-side input path.",
+      },
+      first_url: {
+        type: "string",
+        description: "Compatibility alias for first_frame.",
+      },
+      reference_images: {
+        type: "array",
+        description: "Optional reference images with URL/path and an optional role or name.",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            url: { type: "string" },
+            path: { type: "string" },
+            role: { type: "string" },
+            name: { type: "string" },
+          },
+        },
+      },
+      reference_image_urls: {
+        type: "array",
+        description: "Compatibility alias for reference_images using image URLs or paths.",
+        items: { type: "string" },
+      },
     },
     output: { schema: { type: "object", additionalProperties: true }, render: (_args, value) => renderJson(value) },
     async execute(args) {
       return client.createVideo({
         story: args.story,
+        first_frame: args.first_frame || args.first_url,
+        reference_images: args.reference_images,
+        reference_image_urls: args.reference_image_urls,
         options: {
           duration: args.duration,
           resolution: args.resolution || "1280x720",
@@ -30,6 +68,7 @@ export function registerCreateVideo(ctx, client) {
           backend: args.backend || "wan",
           enable_audit: args.enable_audit ?? true,
           validate_segments: args.validate_segments ?? false,
+          force_i2v: args.force_i2v ?? false,
           seed: Number.isFinite(args.seed) ? args.seed : 0,
         },
       });

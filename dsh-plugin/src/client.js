@@ -1,16 +1,38 @@
 const DEFAULT_GATEWAY_URL = "http://127.0.0.1:8787";
 
+export class RecaGatewayError extends Error {
+  constructor(message, { status, code, path, payload } = {}) {
+    super(message);
+    this.name = "RecaGatewayError";
+    this.status = status;
+    this.httpStatus = status;
+    this.code = code;
+    this.path = path;
+    this.payload = payload;
+  }
+}
+
 export class RecaClient {
-  constructor(baseUrl, runtime = null) {
-    this.runtime = runtime;
-    this.baseUrl = String(baseUrl || process.env.RECA_GATEWAY_URL || DEFAULT_GATEWAY_URL).replace(/\/+$/, "");
+  constructor(
+    baseUrl = process.env.RECA_GATEWAY_URL || DEFAULT_GATEWAY_URL,
+    token = process.env.RECA_GATEWAY_TOKEN,
+  ) {
+    this.baseUrl = String(baseUrl).replace(/\/+$/, "");
+    this.token = typeof token === "string" ? token.trim() : "";
+  }
+
+  rawFetch(path, options = {}) {
+    return fetch(`${this.baseUrl}${path}`, {
+      ...options,
+      headers: {
+        ...(this.token ? { authorization: `Bearer ${this.token}` } : {}),
+        ...(options.headers || {}),
+      },
+    });
   }
 
   async request(path, options = {}) {
-    if (this.runtime) {
-      this.baseUrl = String(await this.runtime.ensure()).replace(/\/+$/, "");
-    }
-    const response = await fetch(`${this.baseUrl}${path}`, {
+    const response = await this.rawFetch(path, {
       ...options,
       headers: {
         "content-type": "application/json",
@@ -25,10 +47,25 @@ export class RecaClient {
       payload = { raw: text };
     }
     if (!response.ok) {
-      const message = payload?.error || `ReCA runtime returned HTTP ${response.status}`;
-      throw new Error(message);
+      const gatewayError = payload?.error;
+      const message = typeof gatewayError === "string"
+        ? gatewayError
+        : gatewayError?.message || payload?.message || `Gateway returned HTTP ${response.status}`;
+      const code = (typeof gatewayError === "object" && gatewayError
+        ? gatewayError.code
+        : undefined) || payload?.code;
+      throw new RecaGatewayError(message, {
+        status: response.status,
+        code: typeof code === "string" && code ? code : undefined,
+        path,
+        payload,
+      });
     }
     return payload;
+  }
+
+  capabilities(options = {}) {
+    return this.request("/v1/capabilities", options);
   }
 
   start(input) {
@@ -42,8 +79,12 @@ export class RecaClient {
     return this.start(input);
   }
 
-  status(runId) {
-    return this.request(`/v1/runs/${encodeURIComponent(runId)}`);
+  status(runId, options = {}) {
+    return this.request(`/v1/runs/${encodeURIComponent(runId)}`, options);
+  }
+
+  events(runId, options = {}) {
+    return this.request(`/v1/runs/${encodeURIComponent(runId)}/events`, options);
   }
 
   cancel(runId) {
@@ -60,8 +101,8 @@ export class RecaClient {
     });
   }
 
-  listRuns() {
-    return this.request("/v1/runs");
+  listRuns(options = {}) {
+    return this.request("/v1/runs", options);
   }
 
   getArtifact(runId, relativePath = "") {
@@ -71,5 +112,14 @@ export class RecaClient {
       const item = (manifest.artifacts || []).find((entry) => entry.path === wanted);
       return item || { error: "artifact not found", path: wanted };
     });
+  }
+
+  artifactJson(runId, relativePath, options = {}) {
+    const path = String(relativePath)
+      .split("/")
+      .filter(Boolean)
+      .map(encodeURIComponent)
+      .join("/");
+    return this.request(`/v1/runs/${encodeURIComponent(runId)}/artifacts/${path}`, options);
   }
 }

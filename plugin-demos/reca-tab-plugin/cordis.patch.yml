@@ -1,0 +1,5 @@
+# Mount the host half. The dsh.client manifest on the same package makes the
+# web host discover and serve lib/client.js automatically.
+- insert:
+    - id: reca-tab-demo
+      name: dsh-reca-tab-plugin-demo

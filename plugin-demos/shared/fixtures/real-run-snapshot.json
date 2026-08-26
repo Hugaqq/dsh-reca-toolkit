@@ -1,0 +1,249 @@
+{
+  "status": {
+    "run_id": "190160905a09",
+    "state": "running",
+    "gateway_state": "running",
+    "stage": "plan_skeleton",
+    "progress": 0,
+    "created_at": 1787192259.8577077,
+    "started_at": 1787192259.8685865,
+    "ended_at": null,
+    "final_video": null,
+    "error": null,
+    "audit_state": "audit_running",
+    "video_state": "rendering",
+    "reca_state": {
+      "version": 1,
+      "updated_at": 1787194300.1,
+      "run_id": "190160905a09",
+      "state": "running",
+      "stage": "rendering",
+      "status": "running",
+      "progress": null,
+      "audit_state": "audit_running",
+      "video_state": "rendering",
+      "shot_count": 2,
+      "segment_count": 3,
+      "asset_count": 2,
+      "audit_meta": {
+        "validator_errors": 0,
+        "repairs": 1
+      }
+    }
+  },
+  "request": {
+    "story": "请制作一条约 18 秒的电影感短片。暴雨后的海边悬崖，一名披深蓝斗篷的女剑士拔剑迎战黑色巨鸟。",
+    "options": {
+      "backend": "wan",
+      "resolution": "1920x1080"
+    }
+  },
+  "renderPlan": {
+    "portrait_plan": {
+      "blue_swordswoman": {
+        "id": "blue_swordswoman",
+        "kind": "portrait",
+        "image_request": {
+          "request_id": "blue_swordswoman",
+          "name": "Blue swordswoman",
+          "prompt": "A realistic swordswoman in a deep-blue cloak.",
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/portraits/blue_swordswoman.png"
+        }
+      }
+    },
+    "location_plan": {
+      "storm_cliff": {
+        "id": "storm_cliff",
+        "kind": "location",
+        "image_request": {
+          "request_id": "storm_cliff",
+          "prompt": "A storm-lit lighthouse cliff after heavy rain.",
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/locations/storm_cliff.png"
+        }
+      }
+    },
+    "prop_plan": {},
+    "shots": [
+      {
+        "id": "shot01_draw_sword",
+        "duration_s": 10,
+        "story_goal": "The swordswoman draws her blade and faces the approaching bird.",
+        "start_state": "She stands in front of the lighthouse.",
+        "end_state": "The sword points toward the black bird.",
+        "visual_intent": "A low tracking shot with storm backlight."
+      },
+      {
+        "id": "shot02_turn_home",
+        "duration_s": 8,
+        "story_goal": "She lowers the sword and looks back at the lighthouse.",
+        "start_state": "The bird retreats into the clouds.",
+        "end_state": "She faces the warm lighthouse beam.",
+        "visual_intent": "A restrained crane-out."
+      }
+    ],
+    "boundary_anchors": [
+      {
+        "id": "a01_draw_sword_start",
+        "kind": "anchor_image",
+        "image_request": {
+          "request_id": "a01_draw_sword_start",
+          "prompt": "The swordswoman stands on the wet cliff.",
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/anchors/a01_draw_sword_start.png"
+        }
+      },
+      {
+        "id": "a02_turn_home_start",
+        "kind": "anchor_image",
+        "image_request": {
+          "request_id": "a02_turn_home_start",
+          "prompt": "The bird disappears into the storm.",
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/anchors/a02_turn_home_start.png"
+        }
+      }
+    ],
+    "segments": {
+      "seg_shot01_draw_sword_00": {
+        "id": "seg_shot01_draw_sword_00",
+        "request_type": "SegmentRequest",
+        "shot_id": "shot01_draw_sword",
+        "segment_index_in_shot": 0,
+        "end_state": "Her sword is fully drawn.",
+        "segment_request": {
+          "request_id": "seg_shot01_draw_sword_00",
+          "prompt": "Track forward as she draws the sword once.",
+          "duration_s": 5,
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/segments/seg_shot01_draw_sword_00.mp4"
+        }
+      },
+      "seg_shot01_draw_sword_01": {
+        "id": "seg_shot01_draw_sword_01",
+        "request_type": "SegmentRequest",
+        "shot_id": "shot01_draw_sword",
+        "segment_index_in_shot": 1,
+        "end_state": "The bird banks away from the blade.",
+        "segment_request": {
+          "request_id": "seg_shot01_draw_sword_01",
+          "prompt": "The bird crosses frame and banks away after one clash.",
+          "duration_s": 5,
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/segments/seg_shot01_draw_sword_01.mp4"
+        }
+      },
+      "seg_shot02_turn_home_00": {
+        "id": "seg_shot02_turn_home_00",
+        "request_type": "SegmentRequest",
+        "shot_id": "shot02_turn_home",
+        "segment_index_in_shot": 0,
+        "end_state": "She looks at the lighthouse beam.",
+        "segment_request": {
+          "request_id": "seg_shot02_turn_home_00",
+          "prompt": "Crane out as she lowers the sword and turns home.",
+          "duration_s": 8,
+          "output_path": "/mnt/cpfs02/akide/us/haoming/dsh-reca-toolkit/.dsh_runs/190160905a09/run/segments/seg_shot02_turn_home_00.mp4"
+        }
+      }
+    }
+  },
+  "audit": {
+    "version": 1,
+    "state": "audit_running",
+    "updated_at": 1787194300.1,
+    "details": {
+      "stage": "validating",
+      "status": "running"
+    }
+  },
+  "artifacts": {
+    "version": 1,
+    "run_id": "190160905a09",
+    "artifacts": [
+      {
+        "kind": "final_video",
+        "path": "run/final.mp4",
+        "mime": "video/mp4",
+        "status": "missing",
+        "url": "http://127.0.0.1:8787/v1/runs/190160905a09/artifacts/run/final.mp4"
+      },
+      {
+        "kind": "render_plan",
+        "path": "render_plan.json",
+        "mime": "application/json",
+        "status": "missing",
+        "url": "http://127.0.0.1:8787/v1/runs/190160905a09/artifacts/render_plan.json"
+      },
+      {
+        "kind": "audit",
+        "path": "run/audit.json",
+        "mime": "application/json",
+        "status": "ready",
+        "url": "http://127.0.0.1:8787/v1/runs/190160905a09/artifacts/run/audit.json"
+      }
+    ]
+  },
+  "events": [
+    {
+      "ts": 1787194100.0,
+      "type": "log",
+      "text": "[render-local] blue_swordswoman -> /remote/run/portraits/blue_swordswoman.png"
+    },
+    {
+      "ts": 1787194101.0,
+      "type": "log",
+      "text": "[render-local] storm_cliff -> /remote/run/locations/storm_cliff.png"
+    },
+    {
+      "ts": 1787194102.0,
+      "type": "log",
+      "text": "[render-local] a01_draw_sword_start -> /remote/run/anchors/a01_draw_sword_start.png"
+    },
+    {
+      "ts": 1787194103.0,
+      "type": "log",
+      "text": "[render-local] a02_turn_home_start -> /remote/run/anchors/a02_turn_home_start.png"
+    },
+    {
+      "ts": 1787194200.0,
+      "type": "log",
+      "text": "[segment-trace] seg_shot01_draw_sword_00: refs=2 duration=5s mode=r2v"
+    },
+    {
+      "ts": 1787194210.0,
+      "type": "log",
+      "text": "[segment-validate] seg_shot01_draw_sword_00 attempt 1/3: pass=True overall=0.88 (aes=0.95 glob=0.86 cons=0.84) | identity and action passed"
+    },
+    {
+      "ts": 1787194211.0,
+      "type": "log",
+      "text": "[segment-trace] seg_shot01_draw_sword_00: done -> https://provider.example/video-1"
+    },
+    {
+      "ts": 1787194220.0,
+      "type": "log",
+      "text": "[segment-trace] seg_shot01_draw_sword_01: refs=2 duration=5s mode=r2v"
+    },
+    {
+      "ts": 1787194230.0,
+      "type": "log",
+      "text": "[segment-validate] seg_shot01_draw_sword_01 attempt 1/3: pass=False overall=0.62 (aes=0.91 glob=0.55 cons=0.58) | the bird duplicated"
+    },
+    {
+      "ts": 1787194231.0,
+      "type": "log",
+      "text": "[router] seg_shot01_draw_sword_01: strategy=seed_reroll | one deterministic repair branch"
+    },
+    {
+      "ts": 1787194240.0,
+      "type": "log",
+      "text": "[segment-validate] seg_shot01_draw_sword_01 attempt 2/3: pass=True overall=0.79 (aes=0.94 glob=0.76 cons=0.75) | repaired output accepted"
+    },
+    {
+      "ts": 1787194241.0,
+      "type": "log",
+      "text": "[segment-trace] seg_shot01_draw_sword_01: done -> https://provider.example/video-2"
+    },
+    {
+      "ts": 1787194250.0,
+      "type": "log",
+      "text": "[segment-trace] seg_shot02_turn_home_00: refs=1 duration=8s mode=r2v"
+    }
+  ]
+}

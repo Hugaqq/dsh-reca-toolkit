@@ -309,9 +309,6 @@ def _generate(*, request_id: str, prompt: str, media: list[dict[str, str]], dura
     except (OSError, ValueError):
         state = {}
     task_id = state.get("task_id") if isinstance(state, dict) else None
-    prior_status = str((state or {}).get("status") or "").lower()
-    if prior_status in {"failed", "failure", "error", "canceled", "cancelled"}:
-        task_id = None
     if not isinstance(task_id, str) or not task_id:
         created = _json_request("POST", _url(os.environ.get("RECA_WAN30_SUBMIT_PATH", _CREATE_PATH)), payload=payload)
         task_id = _task_id(created)
@@ -319,12 +316,6 @@ def _generate(*, request_id: str, prompt: str, media: list[dict[str, str]], dura
         state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
     final = _poll(task_id)
     if _status(final) not in {"succeeded", "success", "completed"}:
-        # Sticky task_id on a FAILED job makes every retry poll the same
-        # dead DashScope task (elapsed=0s). Drop it so the next attempt submits.
-        try:
-            state_path.unlink()
-        except OSError:
-            pass
         raise RuntimeError(f"Wan 3.0 task {task_id} ended with status={_status(final)!r}: {final}")
     video_url = _video_url(final)
     if not video_url:
@@ -342,10 +333,10 @@ class Wan30VideoBackend(VideoSegmentBackendBase):
         supports_resolutions=("1280x720", "1920x1080"),
         segment_duration_range=(2.0, 15.0),
         bridge_duration_range=(2.0, 15.0),
-        # Wan3.0 R2V has no hard first_frame slot. The first frame is sent as
-        # reference_image[0], matching ReCA's HappyHorse R2V contract.
-        # Keep four total media items so the first frame plus three planner
-        # references fit the provider's conservative reference budget.
+        # Wan3.0 uses mode-specific media contracts: I2V accepts one hard
+        # first_frame, while R2V receives only soft reference_image entries.
+        # Keep four total R2V media items so the soft start image plus three
+        # planner references fit the provider's conservative reference budget.
         max_reference_images=4,
         max_prompt_chars=20000,
         concurrency_env="RECA_WAN30_WORKERS",
@@ -358,22 +349,24 @@ class Wan30VideoBackend(VideoSegmentBackendBase):
     )
 
     def render_segment(self, req: SegmentRequest) -> VideoResult:
-        # Wan3.0 rejects first_frame mixed with reference_image. Use the
-        # HappyHorse-compatible pure-R2V mapping: reference_image[0] is the
-        # current first frame and the remaining entries are planner-selected
-        # identity/scene/prop references. The prompt makes the soft temporal
-        # role explicit because the provider has no hard first-frame slot.
-        media: list[dict[str, str]] = [{"type": "reference_image", "url": req.first_url}]
-        if req.mode == "r2v":
+        # Wan3.0 rejects first_frame mixed with reference_image, so the two
+        # segment modes must remain separate at the provider boundary.
+        if req.mode == "i2v":
+            media: list[dict[str, str]] = [
+                {"type": "first_frame", "url": req.first_url},
+            ]
+            prompt = req.prompt
+        else:
+            # HappyHorse-compatible pure-R2V mapping: reference_image[0] is
+            # the soft start image and the remaining entries are
+            # planner-selected identity/scene/prop references.
+            media = [{"type": "reference_image", "url": req.first_url}]
             refs = [url for url in req.reference_image_urls if url]
             media.extend(
                 {"type": "reference_image", "url": url}
                 for url in refs[: max(0, self.PROVIDER_SPEC.max_reference_images - 1)]
             )
             prompt = prefix_r2v(HAPPYHORSE_R2V_PROMPT_TEMPLATE, req.prompt)
-        else:
-            media = media[:1]
-            prompt = req.prompt
         try:
             provider_url = _generate(
                 request_id=req.request_id, prompt=prompt, media=media,
