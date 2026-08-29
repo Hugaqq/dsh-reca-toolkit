@@ -11,9 +11,17 @@ text detail and image/video preview. The redundant native `details` takeover is
 intentionally not registered.
 
 The browser never connects to ReCA directly. It binds the current Harness
-conversation to the exact `run_id` returned by `reca_create_video` or
-`reca_start`, then polls the Host-owned `/reca-trace` RPC every 1.6 seconds.
+conversation to the exact `run_id` returned by `reca_create_video`,
+`reca_create_video_interactive`, or `reca_start`, then polls the Host-owned
+`/reca-trace` RPC every 1.6 seconds.
 This polling and trace normalization are deterministic and do not call an LLM.
+
+`reca_create_video_interactive` uses Harness's native `ctx.userQuestions`
+channel. It may ask one batch of up to three material preference questions,
+then presents a Creative Brief through the native `plan-review` intent. No
+Gateway run exists before explicit approval. Returning the brief for revision,
+dismissing the review, aborting the turn, calling from a live child agent, or
+running without a UI provider never falls back to automatic submission.
 
 The Host plugin also exposes `reca_get_capabilities`. This read-only tool tells
 the conversation model which internal image backend the connected Gateway has

@@ -107,6 +107,25 @@ function testConversationBindingAndCacheNamespace() {
   assert.equal(detected.sessionId, "session-a");
   assert.deepEqual(detected.source, { kind: "tool-result", seq: 9, tool: "reca_resume" });
 
+  const interactive = RecaTrace.latestRunBindingFromConversation({
+    nodes: [{
+      kind: "tool-result",
+      seq: 11,
+      call: { name: "reca_create_video_interactive" },
+      content: {
+        run_id: "interactive123",
+        state: "queued",
+        interaction: { mode: "creative-brief", approved: true, brief_version: 1 },
+      },
+    }],
+  }, "session-interactive");
+  assert.equal(interactive.runId, "interactive123");
+  assert.deepEqual(interactive.source, {
+    kind: "tool-result",
+    seq: 11,
+    tool: "reca_create_video_interactive",
+  });
+
   RecaTrace.rememberRunBinding(binding());
   RecaTrace.rememberRunBinding(binding({ gatewayInstance: "gw-other", sessionId: "session-b" }));
   assert.equal(sessionStorage.length, 2);

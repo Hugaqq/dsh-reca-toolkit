@@ -4,7 +4,12 @@ const TRACE_RPC_CHANNEL = '/reca-trace'
 const RUN_CACHE_PREFIX = 'reca-trace:binding:'
 const EMPTY_SNAPSHOT = null
 const RUN_ID_RE = /^[A-Za-z0-9_-]{6,128}$/
-const RUN_SOURCE_TOOLS = new Set(['reca_create_video', 'reca_start', 'reca_resume'])
+const RUN_SOURCE_TOOLS = new Set([
+  'reca_create_video',
+  'reca_create_video_interactive',
+  'reca_start',
+  'reca_resume',
+])
 const legacyBindings = new Map()
 const serverStoreRegistry = new WeakMap()
 

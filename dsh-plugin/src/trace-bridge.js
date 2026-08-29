@@ -15,7 +15,12 @@ const MEDIA_MIME_RE = /^(?:audio|image|video)\//i;
 const MEDIA_PATH_RE = /\.(?:avif|gif|jpe?g|m4a|m4v|mov|mp3|mp4|ogg|opus|png|wav|webm|webp)$/i;
 const TERMINAL_STATES = new Set(["succeeded", "failed", "cancelled", "interrupted"]);
 const FINAL_AUDIT_STATES = new Set(["audited", "audit_repaired", "audit_failed", "audit_skipped"]);
-const RUN_SOURCE_TOOLS = new Set(["reca_create_video", "reca_start", "reca_resume"]);
+const RUN_SOURCE_TOOLS = new Set([
+  "reca_create_video",
+  "reca_create_video_interactive",
+  "reca_start",
+  "reca_resume",
+]);
 const MAX_TRACE_CACHE_ENTRIES = 128;
 const CAPABILITIES_CACHE_MS = 5000;
 

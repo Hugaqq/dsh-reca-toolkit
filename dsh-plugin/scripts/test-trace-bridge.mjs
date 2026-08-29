@@ -440,11 +440,31 @@ async function testSnapshotBindingAndRunNotFound() {
   assert.equal(missingIdentity.error.code, "gateway-error");
 }
 
+async function testInteractiveToolBinding() {
+  const client = fixtureClient();
+  const { rpcRegistration } = installBridge(client);
+  const result = await rpcRegistration.handler("snapshot", snapshotPayload({
+    sessionId: "session-interactive",
+    source: {
+      kind: "tool-result",
+      seq: 23,
+      tool: "reca_create_video_interactive",
+    },
+  }), new AbortController().signal);
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.value.binding.source, {
+    kind: "tool-result",
+    seq: 23,
+    tool: "reca_create_video_interactive",
+  });
+}
+
 await testAuthorityContract();
 await testArtifactAllowlist();
 await testGatewayFailureIs502();
 await testDownstreamCloseAbortsUpstream();
 await testSnapshotCachesStableArtifacts();
 await testSnapshotBindingAndRunNotFound();
+await testInteractiveToolBinding();
 
 console.log("ok - trace bridge authority, binding, allowlist, abort, and snapshot cache contracts");

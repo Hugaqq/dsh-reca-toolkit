@@ -4,6 +4,7 @@ import { renderJson } from "./renderers/json.js";
 import { registerDirectorSkill } from "./skill.js";
 import { registerCancelRun } from "./tools/cancel-run.js";
 import { registerCreateVideo } from "./tools/create-video.js";
+import { registerCreateVideoInteractive } from "./tools/create-video-interactive.js";
 import { registerGetArtifact } from "./tools/get-artifact.js";
 import { registerGetCapabilities } from "./tools/get-capabilities.js";
 import { registerGetStatus } from "./tools/get-status.js";
@@ -57,6 +58,7 @@ export async function apply(ctx, config = {}) {
   });
   const disposers = [
     registerCreateVideo(ctx, client),
+    registerCreateVideoInteractive(ctx, client),
     registerGetCapabilities(ctx, client),
     registerGetStatus(ctx, client),
     registerCancelRun(ctx, client),

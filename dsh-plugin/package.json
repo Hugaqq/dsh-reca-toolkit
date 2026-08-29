@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "node scripts/build-client.mjs",
-    "check": "npm run build && node scripts/check-package.mjs && node scripts/smoke-client.mjs && node scripts/smoke-host-client.mjs && node scripts/test-capabilities-tool.mjs && node scripts/test-ui-contract.mjs && node scripts/test-trace-session.mjs && node scripts/test-trace-bridge.mjs",
+    "check": "npm run build && node scripts/check-package.mjs && node scripts/smoke-client.mjs && node scripts/smoke-host-client.mjs && node scripts/test-capabilities-tool.mjs && node scripts/test-interactive-tool.mjs && node scripts/test-ui-contract.mjs && node scripts/test-trace-session.mjs && node scripts/test-trace-bridge.mjs",
     "check:installed": "node scripts/check-installed.mjs"
   },
   "peerDependencies": {

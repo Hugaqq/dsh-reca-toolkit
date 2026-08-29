@@ -68,15 +68,16 @@ export class RecaClient {
     return this.request("/v1/capabilities", options);
   }
 
-  start(input) {
+  start(input, options = {}) {
     return this.request("/v1/runs", {
+      ...options,
       method: "POST",
       body: JSON.stringify(input),
     });
   }
 
-  createVideo(input) {
-    return this.start(input);
+  createVideo(input, options = {}) {
+    return this.start(input, options);
   }
 
   status(runId, options = {}) {

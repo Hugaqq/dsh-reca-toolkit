@@ -47,7 +47,9 @@ DSH 对话模型配置可直接复制
 
 ## DSH 工具
 
-新接口为 `reca_create_video`、`reca_get_status`、`reca_cancel`、`reca_resume`、`reca_list_runs` 和 `reca_get_artifact`。旧的 `reca_start`、`reca_status` 仍保留兼容。
+新接口为 `reca_create_video`、`reca_create_video_interactive`、`reca_get_status`、`reca_cancel`、`reca_resume`、`reca_list_runs` 和 `reca_get_artifact`。旧的 `reca_start`、`reca_status` 仍保留兼容。
+
+用户明确要求 Interactive、先提问或先确认时，Director 使用 `reca_create_video_interactive`。该工具复用 Harness 原生问题面板，一次最多补充三个关键偏好，然后通过 `plan-review` 展示 Creative Brief。只有明确批准后才创建 ReCA run；返回修改、关闭面板、终止 Turn、缺少 UI provider 或由实时子 Agent 调用时均 fail closed，不会退化为自动提交。
 
 每次运行分别返回 Gateway 状态、ReCA 阶段、`video_state`、`audit_state` 和 artifact manifest。生成成功不代表审计成功，审计状态会明确返回 `audited`、`audit_skipped`、`audit_failed` 或 `audit_repaired`。
 

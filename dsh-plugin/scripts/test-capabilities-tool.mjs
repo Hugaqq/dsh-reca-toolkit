@@ -80,11 +80,12 @@ const disposeHost = await apply({
     },
   },
 }, { gatewayUrl: "https://gateway.example.test" });
-assert.equal(hostTools.length, 9);
+assert.equal(hostTools.length, 10);
 assert.ok(hostTools.some((spec) => spec.name === "reca_get_capabilities"));
+assert.ok(hostTools.some((spec) => spec.name === "reca_create_video_interactive"));
 assert.equal(hostSkills.length, 1);
 assert.match(hostSkills[0].whenToUse, /backend readiness/);
 disposeHost();
-assert.equal(disposed, 10);
+assert.equal(disposed, 11);
 
 console.log("ok - capability tool forwards Gateway readiness and is registered by the Host plugin");

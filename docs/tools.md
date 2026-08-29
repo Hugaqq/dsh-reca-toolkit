@@ -3,6 +3,8 @@
 The plugin registers these DSH tools:
 
 - `reca_create_video`: submit a natural-language story and RunConfig.
+- `reca_create_video_interactive`: collect up to three material preferences,
+  review a Creative Brief through Harness, and submit only after approval.
 - `reca_get_status`: return Gateway state plus ReCA stage, video state, audit state, and manifest.
 - `reca_cancel`: request SIGTERM, then SIGKILL after the configured grace period.
 - `reca_resume`: resume an interrupted, cancelled, or failed run from its run directory.
@@ -39,3 +41,22 @@ additional `reference_image` entries. Bridge requests still use the real
 first/last-frame pair.
 
 `reca_start` and `reca_status` remain compatibility aliases.
+
+## Interactive creation
+
+Use `reca_create_video_interactive` only when the user asks to be questioned or
+to approve the creative direction before generation. The model supplies the
+known story and structured `brief`, plus zero to three missing preference
+questions. The plugin asks those questions through `ctx.userQuestions`, renders
+the answers into a Creative Brief, and opens a native `plan-review` card.
+
+Approval compiles the original story, structured brief, audio intent,
+continuity/camera constraints, must-have/must-avoid lists, and human answers
+into the persisted upstream story. Backend, resolution, aspect ratio, seed,
+and routing controls remain Gateway options. Interactive defaults are
+`backend=wan`, `force_i2v=false`, `resolution=1280x720`, `aspect_ratio=16:9`,
+and `enable_audit=true`.
+
+A revision response returns `state=awaiting_revision` without a `run_id`.
+Dismissal, cancellation, a missing UI provider, or a delegated live agent
+causes the tool call to fail closed. None of those paths creates a Gateway run.

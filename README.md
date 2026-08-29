@@ -78,7 +78,7 @@ GET  /v1/capabilities
 ```
 
 The single `dsh-plugin/` package registers `reca_create_video`,
-`reca_get_capabilities`, `reca_get_status`, `reca_cancel`, `reca_resume`,
+`reca_create_video_interactive`, `reca_get_capabilities`, `reca_get_status`, `reca_cancel`, `reca_resume`,
 `reca_list_runs`, and `reca_get_artifact`. Compatibility aliases `reca_start` and `reca_status`
 remain available. Its browser half also installs the full ReCA tree tab and the
 compact overlay. Those two surfaces
@@ -86,6 +86,12 @@ share one model-free polling store: they bind to the exact `run_id` returned in
 the current Harness conversation and call the Host-owned `/reca-trace` RPC.
 The legacy `plugin-demos/` packages are reference implementations only and are
 not runtime dependencies.
+
+When the user explicitly asks for an interactive or confirm-first workflow,
+`reca_create_video_interactive` uses Harness's native question panel to collect
+up to three material preferences and present a Creative Brief for review. It
+creates no ReCA run until the user approves that review; revision, dismissal,
+abort, unavailable UI interaction, and delegated-agent calls fail closed.
 
 The plugin never receives provider credentials; ReCA reads them from the
 ignored local `.env` file or the process environment. The browser also never

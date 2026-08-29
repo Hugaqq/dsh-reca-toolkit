@@ -32,15 +32,20 @@ check(!client.includes("ctx.slots.inject('details'"), 'no redundant details surf
 check(client.includes("const TRACE_RPC_CHANNEL = '/reca-trace'"), 'shared Host RPC polling channel')
 check(client.includes("intervalMs = 1600"), 'deterministic 1.6 second polling')
 check(host.includes('gatewayBaseUrl: MEDIA_PREFIX'), 'Host-owned media proxy boundary')
+check(host.includes('"reca_create_video_interactive"'), 'Host interactive run binding')
 check(index.includes('registerGetCapabilities(ctx, client)'), 'Gateway capability tool registration')
+check(index.includes('registerCreateVideoInteractive(ctx, client)'), 'interactive create tool registration')
 check(skill.includes('call reca_get_capabilities before answering'), 'GPT Image 2 capability guidance')
+check(skill.includes('reca_create_video_interactive'), 'interactive routing guidance')
 check(!client.includes('plugin-demos/'), 'no plugin-demos runtime dependency')
 
 for (const file of [
   'lib/client.js',
   'src/index.js',
   'src/client.js',
+  'src/interactive/creative-brief.js',
   'src/trace-bridge.js',
+  'src/tools/create-video-interactive.js',
   'src/tools/get-capabilities.js',
   'src/client-ui/runtime/trace-adapter.cjs',
   'src/client-ui/runtime/trace-react.cjs',
